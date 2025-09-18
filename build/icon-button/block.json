@@ -1,0 +1,131 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dgdev/icon-button",
+  "version": "1.0.0",
+  "title": "Icon Button",
+  "category": "design",
+  "description": "A customizable button block with icons and text for WordPress, perfect for adding styled call-to-action buttons.",
+  "keywords": [
+    "button",
+    "icon",
+    "font awesome",
+    "svg"
+  ],
+  "example": {},
+  "parent": [
+    "dgdev/icon-buttons"
+  ],
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "default": "Add"
+    },
+    "showText": {
+      "type": "boolean",
+      "default": false
+    },
+    "url": {
+      "type": "string",
+      "default": "#"
+    },
+    "rel": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "isExternalLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "iconType": {
+      "type": "string",
+      "default": "font-awesome"
+    },
+    "fontAwesomeIcon": {
+      "type": "string",
+      "default": "fas fa-add"
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "before"
+    },
+    "iconAnimation": {
+      "type": "string",
+      "default": ""
+    },
+    "iconSize": {
+      "type": "string",
+      "default": "medium"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "gradient": {
+      "type": "string",
+      "default": ""
+    },
+    "styleVariant": {
+      "type": "string",
+      "default": "fill"
+    },
+    "hasDefaultColors": {
+      "type": "boolean",
+      "default": true
+    },
+    "themeContext": {
+      "type": "string",
+      "default": "light"
+    },
+    "tooltip": {
+      "type": "string",
+      "default": "Add"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "selectors": {
+    "root": ".wp-block-dgdev-icon-button"
+  },
+  "supports": {
+    "html": false,
+    "customClassName": true,
+    "classnames": false,
+    "align": false,
+    "alignWide": false,
+    "anchor": true,
+    "reusable": false
+  },
+  "styles": [
+    {
+      "name": "fill",
+      "label": "Fill",
+      "isDefault": true
+    },
+    {
+      "name": "outline",
+      "label": "Outline"
+    }
+  ],
+  "textdomain": "iconic-button",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "script": "file:./script.js"
+}

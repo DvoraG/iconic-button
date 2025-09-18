@@ -1,0 +1,477 @@
+# Copyright (C) 2025 Dvora Gvili
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Iconic Button 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iconic-button\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-09-14T18:35:59+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: iconic-button\n"
+
+#. Plugin Name of the plugin
+#: iconic-button.php
+msgid "Iconic Button"
+msgstr ""
+
+#. Description of the plugin
+#: iconic-button.php
+msgid "A customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons."
+msgstr ""
+
+#. Author of the plugin
+#: iconic-button.php
+msgid "Dvora Gvili"
+msgstr ""
+
+#. Author URI of the plugin
+#: iconic-button.php
+msgid "https://www.dgdev-studio.com"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:30
+#: src/components/link-control/modern-link-control.js:52
+msgid "Open in new tab"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:43
+#: src/components/link-control/modern-link-control.js:56
+msgid "Mark as nofollow"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:24
+msgid "Enter URL"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:81
+msgid "Remove Link"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:52
+msgid "Save & Close"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:60
+msgid "Button"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:78
+msgid "Tooltip Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:87
+msgid "Tooltip Text"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:95
+msgid "Enter tooltip (defaults to icon label)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:99
+msgid "Enter tooltip (e.g., Click me)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:106
+msgid "Text to display on hover or focus (e.g., 'Click me')."
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:110
+msgid "Tooltip is empty; will default to icon label."
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:127
+#: src/utils/initial-icons.js:40
+msgid "Link"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:15
+msgid "Add"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:16
+msgid "Arrow Left"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:17
+msgid "Arrow Right"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:18
+msgid "Arrow Up"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:19
+msgid "Arrow Down"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:20
+msgid "Cart"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:21
+msgid "Check"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:23
+msgid "Chevron Left"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:27
+msgid "Chevron Right"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:30
+msgid "Circle"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:31
+msgid "Close"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:32
+msgid "Delete"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:33
+msgid "Download"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:34
+msgid "Edit"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:35
+msgid "Email"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:36
+msgid "Heart"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:37
+msgid "Help"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:38
+msgid "Home"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:39
+msgid "Information"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:41
+msgid "Menu"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:42
+msgid "Notification"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:43
+msgid "Phone"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:44
+msgid "Remove"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:45
+msgid "Share"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:46
+msgid "Search"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:47
+msgid "Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:48
+msgid "Star"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:49
+msgid "Upload"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:50
+msgid "User"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/utils/initial-icons.js:52
+msgid "Warning"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/icon-picker-control/icon-picker.js:45
+msgid "Search Icons"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/icon-picker-control/icon-picker.js:48
+msgid "Type to filter icons…"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/icon-picker-control/icon-picker.js:70
+#: src/controls/setting-controls.js:65
+msgid "None"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/icon-picker-control/icon-picker.js:76
+msgid "No icons found."
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:41
+msgid "Icon Button Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:45
+msgid "Choose a Font Awesome Icon"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:61
+msgid "Icon Animation"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:69
+msgid "Spin"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:73
+msgid "Bounce"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:88
+msgid "Icon Size"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:92
+msgid "Small (16px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:96
+msgid "Medium (20px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:100
+msgid "Large (24px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:104
+msgid "X-Large (28px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:113
+msgid "Button Text Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:116
+msgid "Show Button Text"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:125
+msgid "Icon Position"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:129
+msgid "Before Text"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:133
+msgid "After Text"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:144
+msgid "Button Text"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/styling-controls.js:16
+msgid "Border Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/styling-controls.js:20
+msgid "Border Radius (px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:76
+msgid "Background"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:78
+msgid "Gradient"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:82
+msgid "Color Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:110
+#: src/components/color-control/color-control.js:203
+msgid "Text Color"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:147
+msgid "Gradients are not supported by automatic contrast checking. Please verify that the text color contrasts with the lightest and darkest parts of the gradient using an external tool like"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:156
+msgid "WebAIM Contrast Checker"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:161
+msgid "for accessibility (WCAG ≥ 4.5:1)."
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:191
+msgid "Clear"
+msgstr ""
+
+#: src/components/svg-preview/svg-preview.js:7
+msgid "No valid SVG code provided."
+msgstr ""
+
+#: src/components/svg-preview/svg-preview.js:14
+msgid "Invalid SVG code."
+msgstr ""
+
+#: src/utils/parseSvgToReact.js:201
+msgid "Icon unavailable"
+msgstr ""
+
+#: build/icon-button/block.json
+#: src/icon-button/block.json
+msgctxt "block title"
+msgid "Icon Button"
+msgstr ""
+
+#: build/icon-button/block.json
+#: build/icon-buttons/block.json
+#: src/icon-button/block.json
+#: src/icon-buttons/block.json
+msgctxt "block description"
+msgid "A customizable button block with icons and text for WordPress, perfect for adding styled call-to-action buttons."
+msgstr ""
+
+#: build/icon-button/block.json
+#: build/icon-buttons/block.json
+#: src/icon-button/block.json
+#: src/icon-buttons/block.json
+msgctxt "block keyword"
+msgid "button"
+msgstr ""
+
+#: build/icon-button/block.json
+#: build/icon-buttons/block.json
+#: src/icon-button/block.json
+#: src/icon-buttons/block.json
+msgctxt "block keyword"
+msgid "icon"
+msgstr ""
+
+#: build/icon-button/block.json
+#: src/icon-button/block.json
+msgctxt "block keyword"
+msgid "font awesome"
+msgstr ""
+
+#: build/icon-button/block.json
+#: src/icon-button/block.json
+msgctxt "block keyword"
+msgid "svg"
+msgstr ""
+
+#: build/icon-button/block.json
+#: src/icon-button/block.json
+msgctxt "block style label"
+msgid "Fill"
+msgstr ""
+
+#: build/icon-button/block.json
+#: src/icon-button/block.json
+msgctxt "block style label"
+msgid "Outline"
+msgstr ""
+
+#: build/icon-buttons/block.json
+#: src/icon-buttons/block.json
+msgctxt "block title"
+msgid "Icon Buttons"
+msgstr ""

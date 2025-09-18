@@ -1,0 +1,98 @@
+/**
+ * Editor-only fixes for icon button hover effects
+ */
+
+.wp-block-dgdev-icon-button {
+	.wp-block-dgdev-icon-button__link {
+		&.no-text[title]:hover {
+			width: 40px !important;
+			padding: 0.5em !important;
+
+			@media (min-width: 782px) {
+				width: 44px !important;
+				padding: 0.625em !important;
+			}
+
+			@media (min-width: 1024px) {
+				width: 48px !important;
+				padding: 0.75em !important;
+			}
+
+			/* Create tooltip as positioned overlay instead */
+			&::after {
+				content: attr(title);
+				position: absolute;
+				top: -35px; /* Position above button */
+				left: 50%;
+				transform: translateX(-50%);
+				background: var(--wp-admin-theme-color, #0073aa);
+				color: #fff;
+				padding: 4px 8px;
+				border-radius: 4px;
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				white-space: nowrap;
+				z-index: 10;
+				pointer-events: none;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			/* Add small arrow pointing down */
+			&::before {
+				content: "";
+				position: absolute;
+				top: -8px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid rgba(0, 0, 0, 0.8);
+				z-index: 10;
+				pointer-events: none;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			/* Show tooltip and arrow on hover */
+			&:hover::after,
+			&:hover::before {
+				opacity: 1;
+			}
+		}
+
+		/* Keep icon visible during hover */
+		&.no-text:hover i {
+			opacity: 1 !important; /* Override the opacity: 0 */
+			display: inline-block !important; /* Override the display: none */
+		}
+	}
+}
+
+/* 
+ * Clean tooltip positioning without any container modifications
+ * Let tooltips overflow naturally - editor can handle clipping
+ */
+
+.wp-block-dgdev-icon-buttons {
+	.wp-block-dgdev-icon-button {
+		position: relative;
+
+		/* Smart tooltip positioning for edge cases */
+		&:first-of-type
+			.wp-block-dgdev-icon-button__link.no-text[title]:hover::after {
+			/* For first button, nudge tooltip slightly right if very close to edge */
+			left: calc(50% + 5px);
+		}
+
+		&:last-of-type
+			.wp-block-dgdev-icon-button__link.no-text[title]:hover::after {
+			/* For last button, nudge tooltip slightly left if very close to edge */
+			left: calc(50% - 5px);
+		}
+	}
+}

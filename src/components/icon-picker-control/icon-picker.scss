@@ -1,0 +1,42 @@
+.dgdevicob-icon-picker:not(:last-child) {
+	margin-block-end: 16px;
+
+	.dgdevicob-icon-picker__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+		margin-block-start: 10px;
+
+		.dgdevicob-icon-picker__button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 40px;
+			border: 1px solid #ddd;
+			background: #fff;
+			transition: all 0.2s;
+
+			&:hover {
+				border-color: #0073aa;
+				background: #f0f6fc;
+			}
+
+			i {
+				font-weight: 900;
+				font-style: normal;
+				line-height: 1;
+				speak-as: none;
+				display: inline-block;
+				text-rendering: auto;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			&.is-pressed {
+				border: 1px solid #ddd;
+				color: #fff;
+				background: #0073aa;
+			}
+		}
+	}
+}

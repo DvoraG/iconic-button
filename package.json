@@ -1,0 +1,78 @@
+{
+	"name": "iconic-button",
+	"version": "1.0.0",
+	"description": "Button that can receive an icon as label with or without text.",
+	"author": "Dvora Gvili",
+	"license": "",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --blocks-manifest",
+		"format": "wp-scripts format && stylelint \"**/*.scss\" --fix",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --blocks-manifest",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx}": [
+			"wp-scripts format",
+			"wp-scripts lint-js"
+		],
+		"*.scss": [
+			"npx stylelint --fix"
+		]
+	},
+	"files": [
+		"build",
+		"assets",
+		"languages",
+		"readme.txt",
+		"README.md",
+		"iconic-button.php"
+	],
+	"prettier": "@wordpress/prettier-config",
+	"stylelint": {
+		"extends": "@wordpress/stylelint-config/scss",
+		"rules": {
+			"at-rule-empty-line-before": null,
+			"at-rule-no-unknown": null,
+			"comment-empty-line-before": null,
+			"font-weight-notation": null,
+			"no-descending-specificity": null,
+			"rule-empty-line-before": null,
+			"selector-class-pattern": null,
+			"value-keyword-case": null
+		},
+		"ignoreFiles": [
+			"/**/*.css",
+			"assets/fontawesome-free-7.0.0-web/css/all.min.css",
+			"build/**/*.css",
+			"node_modules/**/*.scss"
+		]
+	},
+	"devDependencies": {
+		"@wordpress/blocks": "^14.14.0",
+		"@wordpress/docgen": "^2.23.0",
+		"@wordpress/env": "^10.28.0",
+		"@wordpress/eslint-plugin": "^17.0.0",
+		"@wordpress/prettier-config": "^4.23.0",
+		"@wordpress/scripts": "^30.16.0",
+		"@wordpress/stylelint-config": "^23.15.0",
+		"classnames": "^2.5.1",
+		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^8.10.0",
+		"eslint-plugin-jsdoc": "^48.2.0",
+		"eslint-plugin-prettier": "^5.5.4",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.1.6",
+		"prettier": "^3.3.3",
+		"stylelint": "^16.19.1",
+		"subset-font": "^2.4.0"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^7.26.0",
+		"@wordpress/icons": "^10.23.0"
+	}
+}

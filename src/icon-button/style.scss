@@ -1,0 +1,461 @@
+/**
+ * The following styles get applied both on the front and in the editor.
+ */
+:root {
+	--focus-color: #404040;
+	--focus-color-rgb: 64, 64, 64;
+	--active-color: #003087; /* Darker WordPress blue for text */
+	--active-background: rgb(
+		18,
+		112,
+		179
+	); /* Lighter WordPress blue for selected */
+	--active-background-rgb: 18, 112, 179;
+	--selected-background: #2e8bc9; /* Darker WordPress blue for fill selected */
+	--selected-background-rgb: 46, 139, 201;
+	--external-link-indiator: #e8c22c;
+
+	.is-theme-dark {
+		--focus-color: #d1d1d1;
+		--focus-color-rgb: 181, 181, 181;
+		--active-color: #99c7e6; /* Lighter WordPress blue for text */
+		--active-background: #80c0e6; /* Brighter WordPress blue for selected */
+		--active-background-rgb: 128, 192, 230;
+		--selected-background: #66b3e0; /* Darker WordPress blue for fill selected */
+		--selected-background-rgb: 102, 179, 224;
+	}
+}
+
+.sr-only {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.wp-block-dgdev-icon-button {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	padding: 0;
+	background-color: transparent;
+	position: relative;
+
+	.wp-block-dgdev-icon-button__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none !important;
+		min-width: 40px;
+		min-height: 40px;
+		padding: 0.5em;
+		box-sizing: border-box;
+		transition: all 0.5s ease;
+		position: relative;
+
+		@media (min-width: 782px) {
+			min-width: 44px;
+			min-height: 44px;
+			padding: 0.625em;
+		}
+
+		@media (min-width: 1024px) {
+			min-width: 48px;
+			min-height: 48px;
+			padding: 0.75em;
+		}
+
+		&.is-style-fill {
+			background-color: var(--wp--preset--color--contrast, #0073aa);
+			color: var(--wp--preset--color--base, #e2e2e2);
+
+			&:hover {
+				filter: brightness(1.2);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			&:active {
+				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+				transition: none; /* Make active state instantaneous */
+				filter: brightness(0.9);
+
+				@media (max-width: 1023px) {
+					transform: scale(0.98); /* Subtle press feedback */
+					box-shadow:
+						inset 0 3px 6px rgba(0, 0, 0, 0.3),
+						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
+				}
+			}
+		}
+
+		&.is-style-outline {
+			background-color: transparent !important;
+			color: var(--wp--preset--color--contrast, #0073aa);
+			border: 2px solid currentColor;
+
+			&:hover {
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			}
+
+			&:active {
+				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+				background-color: rgba(
+					var(--active-background-rgb, 18, 112, 179),
+					0.1
+				); /* Subtle active background */
+				transition: none;
+
+				@media (max-width: 1023px) {
+					transform: scale(0.98); /* Subtle press feedback */
+					box-shadow:
+						inset 0 3px 6px rgba(0, 0, 0, 0.3),
+						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
+				}
+			}
+		}
+
+		/* Icon only button */
+		&.no-text {
+			width: 40px;
+			height: 40px;
+			padding: 0.5em;
+
+			@media (min-width: 782px) {
+				width: 44px;
+				height: 44px;
+				padding: 0.625em;
+			}
+
+			@media (min-width: 1024px) {
+				width: 48px;
+				height: 48px;
+				padding: 0.75em;
+			}
+
+			&:hover {
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			&:active {
+				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+				transition: none;
+
+				@media (max-width: 1023px) {
+					transform: scale(0.98); /* Subtle press feedback */
+					box-shadow:
+						inset 0 3px 6px rgba(0, 0, 0, 0.3),
+						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
+				}
+			}
+		}
+
+		&:hover {
+			transform: scale(1.05); /* Subtle zoom effect */
+			font-weight: bold;
+		}
+
+		&.external-link {
+			position: relative;
+		}
+
+		/* External link indicator */
+		&.external-link:hover::before {
+			content: "";
+			display: block;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: var(--external-link-indiator);
+			position: absolute;
+			top: 8px;
+			right: 16px;
+			pointer-events: none;
+
+			@media (min-width: 782px) {
+				width: 9px;
+				height: 9px;
+				top: 3px;
+				right: 18px;
+			}
+
+			@media (min-width: 1024px) {
+				width: 10px;
+				height: 10px;
+				top: 2px;
+				right: 20px;
+			}
+		}
+
+		&.no-text.external-link:hover::before {
+			content: "";
+			top: 4px;
+			right: 12px;
+
+			@media (min-width: 782px) {
+				top: 6px;
+				right: 14px;
+			}
+
+			@media (min-width: 1024px) {
+				top: 8px;
+				right: 16px;
+			}
+		}
+
+		&:focus,
+		&:focus-visible {
+			outline: 4px dashed var(--focus-color, #0073aa);
+			outline-offset: 4px;
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+		}
+
+		@media (max-width: 781px) {
+			&:focus,
+			&:focus-visible {
+				outline: 2px solid var(--focus-color, #0073aa);
+				outline-offset: 2px;
+			}
+
+			/* Tablet override */
+			@media (min-width: 782px) and (max-width: 1023px) {
+				&:focus,
+				&:focus-visible {
+					outline: 3px solid var(--focus-color, #0073aa);
+					outline-offset: 3px;
+				}
+			}
+		}
+
+		/* START hover / mouse over effect for icon only buttons */
+		&.no-text[title]:hover {
+			width: auto;
+			min-width: 40px;
+			padding: 0.5em 1em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.5s ease;
+
+			@media (min-width: 782px) {
+				min-width: 44px;
+				padding: 0.625em 1.25em;
+			}
+
+			@media (min-width: 1024px) {
+				min-width: 48px;
+				padding: 0.75em 1.5em;
+			}
+		}
+
+		&.no-text[title]:hover::after {
+			content: attr(title); /* Show tooltip text */
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+			font-size: 0.9em; /* Smaller for .no-text */
+			font-weight: 600;
+			color: currentColor; /* Match icon color */
+			white-space: nowrap;
+			transition: opacity 0.5s ease;
+		}
+
+		&.no-text:hover i {
+			opacity: 0; /* Hide icon for .no-text on hover/focus */
+			display: none;
+		}
+		/* END hover / mouse over effect */
+
+		&:not(.no-text) {
+			width: auto; /* Allow text buttons to expand */
+			aspect-ratio: auto; /* Prevent square constraint */
+			padding: 0.5em 1em; /* Consitent padding for text buttons */
+			position: relative;
+
+			@media (min-width: 782px) {
+				padding: 0.625em 1.25em;
+			}
+
+			@media (min-width: 1024px) {
+				padding: 0.75em 1.5em;
+			}
+
+			&:hover {
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			&:active {
+				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+				transition: none;
+
+				@media (max-width: 1023px) {
+					transform: scale(0.98); /* Subtle press feedback */
+					box-shadow:
+						inset 0 3px 6px rgba(0, 0, 0, 0.3),
+						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
+				}
+			}
+		}
+
+		> i,
+		span,
+		.wp-block-dgdev-icon-button__svg-wrapper {
+			display: inline-flex; // Change to inline-flex for better centering
+			align-items: center;
+			justify-content: center;
+			color: inherit !important;
+			opacity: 1;
+		}
+
+		.wp-block-dgdev-icon-button__svg-wrapper {
+			opacity: 1; /* visible by default */
+		}
+
+		/*** PREFERS REDUCED MOTION START ***/
+		@media (prefers-reduced-motion: reduce) {
+			&:hover,
+			&:focus,
+			&:focus-visible {
+				transition: none; /* Disable transitions */
+				box-shadow: none;
+				font-weight: bold;
+				opacity: 0.9; /* Subtle fade for hover */
+
+				outline: 2px solid var(--focus-color, #0073aa);
+				outline-offset: 2px;
+				background-color: rgba(
+					var(--active-background-rgb, 18, 112, 179),
+					0.25
+				);
+
+				/* Remove responsive focus complexity for reduced motion */
+				@media (max-width: 781px) {
+					outline: 2px solid var(--focus-color, #0073aa);
+					outline-offset: 1px;
+					background-color: rgba(
+						var(--active-background-rgb, 18, 112, 179),
+						0.3
+					); /* Higher for mobile */
+					color: var(--active-color, #0073aa);
+				}
+
+				@media (min-width: 782px) and (max-width: 1023px) {
+					outline: 2px solid var(--focus-color, #0073aa);
+					outline-offset: 2px;
+				}
+			}
+
+			/* Remove focus-visible complexity for reduced motion */
+			&:focus:not(:focus-visible) {
+				outline: none;
+				background-color: rgba(var(--focus-color-rgb, 64, 64, 64), 0.1);
+			}
+
+			&:active {
+				transition: none;
+				box-shadow: none;
+				transform: none; /* Remove any scale transforms */
+			}
+
+			&.selected {
+				transition: none;
+				box-shadow: none;
+				color: var(--active-color, #0073aa);
+				background-color: rgba(
+					var(--active-background-rgb, 18, 112, 179),
+					0.2
+				);
+
+				/* Simplified focus for selected state */
+				&:focus,
+				&:focus-visible {
+					outline: 2px solid var(--focus-color, #0073aa);
+					outline-offset: 1px;
+				}
+
+				&.is-style-fill {
+					background-color: rgba(
+						var(--selected-background-rgb, 18, 112, 179),
+						0.9
+					);
+					color: var(--wp--preset--color--base, #e2e2e2);
+				}
+
+				&.is-style-outline {
+					background-color: rgba(
+						var(--active-background-rgb, 18, 112, 179),
+						0.3
+					);
+					color: var(--active-color, #0073aa) !important;
+					border-color: currentColor;
+				}
+
+				&.no-text {
+					background-color: rgba(
+						var(--active-background-rgb, 18, 112, 179),
+						0.2
+					);
+					color: var(--active-color, #0073aa);
+				}
+
+				&:not(.no-text) {
+					text-decoration: underline;
+				}
+			}
+
+			&.no-text:active,
+			&.no-text:hover {
+				transition: none; /* Disable width/height transition */
+				box-shadow: none;
+				transform: none; /* Remove any scaling effects */
+			}
+
+			&.no-text[title]:hover,
+			&.no-text[title]:hover::after,
+			&.no-text[title]:active,
+			&.no-text[title]:active::after,
+			&.no-text[title].selected,
+			&.no-text[title].selected::after {
+				transition: none;
+				letter-spacing: normal;
+				transform: none; /* Remove scaling */
+			}
+
+			&:not(.no-text) {
+				font-weight: bold;
+			}
+		}
+		/*** PREFERS REDUCED MOTION END ***/
+	}
+
+	.wp-block-dgdev-icon-button__text {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: max-content;
+		width: 100%;
+		height: 100%;
+		gap: 8px;
+		letter-spacing: 1.1px;
+
+		@media (min-width: 782px) {
+			gap: 10px;
+			letter-spacing: 1.2px;
+		}
+
+		@media (min-width: 1024px) {
+			gap: 12px;
+			letter-spacing: 1.3px;
+		}
+
+		> .text-span-before {
+			padding-inline-start: 0.25em;
+		}
+
+		> .text-span-after {
+			padding-inline-end: 0.25em;
+		}
+	}
+}

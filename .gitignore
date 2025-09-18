@@ -1,0 +1,50 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional cache
+.eslintcache
+.prettiercache
+/cache/
+
+# Output of `npm pack`
+*.tgz
+
+# Output of `wp-scripts plugin-zip`
+*.zip
+
+# dotenv environment variables file
+.env
+
+# Build artifacts
+dist/
+build/index.asset.php
+
+# VSCode editor adaption
+.vscode
+package-lock.json
+.husky
+.git
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# other files to ignore
+docs/
+*.txt
+!readme.txt
+!LICENSE.txt
