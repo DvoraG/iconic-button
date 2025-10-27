@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { log } from '../utils/logger';
+import { checkIsDark } from '../components/color-control/color-utils';
 
 /**
  * Initializes the script after the DOM has been fully loaded.
@@ -33,40 +33,41 @@ document.addEventListener('DOMContentLoaded', () => {
 			 * @param {string} color - The color string (e.g., 'rgb(r,g,b)' or '#rrggbb').
 			 * @return {boolean} True if the color is dark, otherwise false.
 			 */
-			const isDark = (color) => {
-				const rgbMatch = color.match(
-					/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*\d+\.\d+)?\)/i
-				);
-				if (rgbMatch && rgbMatch.length >= 4) {
-					const r = parseInt(rgbMatch[1], 10);
-					const g = parseInt(rgbMatch[2], 10);
-					const b = parseInt(rgbMatch[3], 10);
-					const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-					return luminance < 128;
-				}
-				if (color.startsWith('#')) {
-					const hex = color.slice(1);
-					const r = parseInt(
-						hex.length === 3 ? hex[0] + hex[0] : hex.slice(0, 2),
-						16
-					);
-					const g = parseInt(
-						hex.length === 3 ? hex[1] + hex[1] : hex.slice(2, 4),
-						16
-					);
-					const b = parseInt(
-						hex.length === 3 ? hex[2] + hex[2] : hex.slice(4, 6),
-						16
-					);
-					const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-					return luminance < 128;
-				}
-				log('warn', 'Unrecognized color format:', { color });
+			// const isDark = (color) => {
+			// 	const rgbMatch = color.match(
+			// 		/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*\d+\.\d+)?\)/i
+			// 	);
+			// 	if (rgbMatch && rgbMatch.length >= 4) {
+			// 		const r = parseInt(rgbMatch[1], 10);
+			// 		const g = parseInt(rgbMatch[2], 10);
+			// 		const b = parseInt(rgbMatch[3], 10);
+			// 		const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+			// 		return luminance < 128;
+			// 	}
+			// 	if (color.startsWith('#')) {
+			// 		const hex = color.slice(1);
+			// 		const r = parseInt(
+			// 			hex.length === 3 ? hex[0] + hex[0] : hex.slice(0, 2),
+			// 			16
+			// 		);
+			// 		const g = parseInt(
+			// 			hex.length === 3 ? hex[1] + hex[1] : hex.slice(2, 4),
+			// 			16
+			// 		);
+			// 		const b = parseInt(
+			// 			hex.length === 3 ? hex[2] + hex[2] : hex.slice(4, 6),
+			// 			16
+			// 		);
+			// 		const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+			// 		return luminance < 128;
+			// 	}
+			// 	log('warn', 'Unrecognized color format:', { color });
 
-				return false;
-			};
+			// 	return false;
+			// };
 
-			const newContext = isDark(bgColor) ? 'dark' : 'light';
+			// const newContext = isDark(bgColor) ? 'dark' : 'light';
+			const newContext = checkIsDark(bgColor) ? 'dark' : 'light';
 			const currentContext = button.classList.contains('is-theme-dark')
 				? 'dark'
 				: 'light';
@@ -126,6 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				event.currentTarget.setAttribute('aria-current', 'page');
 
 				handleButtonClick(button);
+
+				// >>> NEW LINE TO FIX FOCUS ISSUE <<<
+				// Removes focus, preventing the persistent active/focus state.
+				event.currentTarget.blur();
 			});
 		}
 	});

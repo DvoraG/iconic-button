@@ -39,8 +39,9 @@ const StylingControls = ({ attributes, setAttributes }) => {
 					onChange={(newRadius) =>
 						setAttributes({ borderRadius: newRadius })
 					}
-					min={4}
-					max={50}
+					min={0}
+					max={48}
+					step={4}
 				/>
 			</PanelBody>
 		</>

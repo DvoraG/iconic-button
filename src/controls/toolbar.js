@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import {
@@ -7,6 +10,9 @@ import {
 	TextControl,
 	ToolbarDropdownMenu,
 } from '@wordpress/components';
+/**
+ * Internal dependencies
+ */
 import ModernLinkControl from '../components/link-control/modern-link-control';
 import LegacyUrlInput from '../components/link-control/legacy-link-control';
 import {
@@ -39,7 +45,6 @@ const IconButtonToolbar = ({
 	setIsTooltipOpen,
 }) => {
 	const { tooltip, iconLabel } = attributes;
-
 	const [localTooltip, setLocalTooltip] = useState(tooltip || '');
 
 	useEffect(() => {
@@ -127,8 +132,7 @@ const IconButtonToolbar = ({
 				</ToolbarDropdownMenu>
 				<ToolbarButton
 					icon={linkIcon}
-					label={__('Link', 'iconic-button')}
-					isPressed={isLinkControlOpen}
+					label={__('Add or edit link', 'iconic-button')}
 					onClick={() => setIsLinkControlOpen(!isLinkControlOpen)}
 				/>
 			</ToolbarGroup>
@@ -141,11 +145,14 @@ const IconButtonToolbar = ({
 						<ModernLinkControl
 							attributes={attributes}
 							setAttributes={setAttributes}
+							isOpen={isLinkControlOpen}
+							onClose={() => setIsLinkControlOpen(false)}
 						/>
 					) : (
 						<LegacyUrlInput
 							attributes={attributes}
 							setAttributes={setAttributes}
+							isOpen={isLinkControlOpen}
 							onClose={() => setIsLinkControlOpen(false)}
 						/>
 					)}

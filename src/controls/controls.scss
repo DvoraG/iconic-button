@@ -1,0 +1,17 @@
+/* ============================================================================
+   setting-controls.js
+   ============================================================================ */
+
+/* Style for the text length warning - TextControl with label 'Button Text' */
+.button-text-warning {
+	color: #cc1818;
+	font-weight: 500;
+
+	&::before {
+		content: "⚠ ";
+	}
+}
+
+.button-text-help {
+	color: #757575;
+}

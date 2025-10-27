@@ -1,7 +1,6 @@
 /**
  * Internal dependencies
  */
-import { getThemeContext } from './themeContext';
 import { log } from './logger';
 
 /**
@@ -44,44 +43,14 @@ const setStyleVariant = (
 
 		const newStyleVariant = styleClass
 			? styleClass.replace('is-style-', '')
-			: 'fill'; // Default to filled
+			: 'fill';
 
 		if (newStyleVariant !== styleVariant) {
-			const { contrastColor } = getThemeContext();
-
-			switch (newStyleVariant) {
-				case 'outline':
-					setAttributes({
-						styleVariant: newStyleVariant,
-						textColor: contrastColor,
-						backgroundColor: 'transparent',
-					});
-					break;
-				default:
-					setAttributes({
-						styleVariant: newStyleVariant,
-						backgroundColor: undefined,
-						textColor: undefined,
-					});
-					break;
-			}
+			setAttributes({
+				styleVariant: newStyleVariant,
+			});
 		}
 	}
-};
-
-/**
- * Filters out all falsey values from a style object.
- *
- * @since 1.0.0
- *
- * @param {Object} styleObj   The style object to be filtered.
- * @return {Object} A new style object containing only the truthy key-value pairs.
- */
-const getInlineStyle = (styleObj) => {
-	return Object.fromEntries(
-		// eslint-disable-next-line no-unused-vars
-		Object.entries(styleObj).filter(([key, value]) => value)
-	);
 };
 
 /**
@@ -101,13 +70,11 @@ const generateAriaLabel = (attributes) => {
 	const { url, buttonText, iconLabel, styleVariant, isExternalLink } =
 		attributes;
 
-	// Determine link destination
 	let linkDestination = '';
 
 	if (isExternalLink) {
 		linkDestination = 'Button leads to an external link';
 	} else if (url === '#') {
-		// New condition for the default "#" URL
 		linkDestination = 'Button leads to current page';
 	} else if (url && url.startsWith('#')) {
 		const anchorName = url.substring(1).replace(/-/g, ' ');
@@ -129,7 +96,6 @@ const generateAriaLabel = (attributes) => {
 		}
 	}
 
-	// Determine button meaning and state
 	const buttonMeaning = buttonText || iconLabel;
 	const buttonState =
 		styleVariant === 'fill' || styleVariant === '' ? 'fill' : 'outlined';
@@ -138,30 +104,56 @@ const generateAriaLabel = (attributes) => {
 };
 
 /**
- * Updates the rel attribute.
+ * Updates the link associated attributes.
  *
  * @since 1.0.0
  *
  * @param {Object} attributes                   Block attributes.
  * @param {string} attributes.rel               Current rel attribute.
+ * @param {string} attributes.target            The link target.
+ * @param {string} attributes.url               The link URL.
  * @param {boolean} attributes.isExternalLink   Whether the link is external.
- * @return {string} The updated rel attribute.
+ * @return {Object} An object containing the updated rel and target attributes.
  */
-const setRelAttribute = (attributes) => {
-	const { rel, isExternalLink } = attributes;
-	let newRel = rel;
-	const relAttributes = 'noreferrer noopener';
+const setLinkAttributes = (attributes) => {
+	const { rel, target, url } = attributes;
+	let newRel = rel || '';
+	const newTarget = target || '';
 
-	if (isExternalLink) {
-		// Add 'noreferrer noopener' for external links if missing.
-		if (!newRel || !newRel.includes(relAttributes)) {
-			newRel = newRel ? `${newRel} ${relAttributes}` : relAttributes;
-		}
-	} else if (newRel && newRel.includes(relAttributes)) {
-		// Remove existing 'noreferrer noopener' for internal links, anchors.
-		newRel = newRel.replace(relAttributes, '').trim();
+	newRel = newRel.replace(/\s+/g, ' ').trim();
+
+	const relAttributes = ['noreferrer', 'noopener'];
+
+	const isSectionAnchor = url && url.startsWith('#') && url !== '#';
+
+	if (isSectionAnchor) {
+		const existingRels = newRel ? newRel.split(/\s+/) : [];
+		const filteredRels = existingRels.filter(
+			(attr) => !relAttributes.includes(attr)
+		);
+		newRel = filteredRels.join(' ').trim();
+	} else if (newTarget === '_blank') {
+		const existingRels = newRel ? newRel.split(/\s+/) : [];
+
+		relAttributes.forEach((attr) => {
+			if (!existingRels.includes(attr)) {
+				existingRels.push(attr);
+			}
+		});
+
+		newRel = existingRels.join(' ');
+	} else {
+		const existingRels = newRel ? newRel.split(/\s+/) : [];
+		const filteredRels = existingRels.filter(
+			(attr) => !relAttributes.includes(attr)
+		);
+		newRel = filteredRels.join(' ').trim();
 	}
-	return newRel;
+
+	return {
+		rel: newRel || undefined,
+		target: newTarget || undefined,
+	};
 };
 
 /**
@@ -173,7 +165,6 @@ const setRelAttribute = (attributes) => {
  * @param {string} attributes.styleVariant    The style variant attribute.
  * @param {boolean} attributes.showText       Whether to show the button text.
  * @param {string} attributes.buttonText      The button text.
- * @param {boolean} attributes.isExternalLink Whether the link is external.
  * @return {string} The combined CSS class string that is passed to the anchor tag.
  */
 const getLinkClasses = (attributes) => {
@@ -182,7 +173,7 @@ const getLinkClasses = (attributes) => {
 		'wp-block-dgdev-icon-button__link',
 		styleVariant ? `is-style-${styleVariant}` : 'is-style-fill',
 		!showText || !buttonText ? 'no-text' : '',
-		isExternalLink ? 'external-link' : '',
+		isExternalLink ? 'has-external-link' : '',
 	];
 	return classes.join(' ').trim();
 };
@@ -207,9 +198,8 @@ const getThemeClass = (themeContext) => {
 export {
 	getIconSizePx,
 	setStyleVariant,
-	getInlineStyle,
 	generateAriaLabel,
-	setRelAttribute,
+	setLinkAttributes,
 	getLinkClasses,
 	getThemeClass,
 };

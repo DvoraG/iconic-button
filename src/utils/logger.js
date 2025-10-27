@@ -30,7 +30,7 @@ export function log(level, message, details = {}) {
 				console.warn(logMessage, enrichedDetails);
 				break;
 			default:
-				console.warn(logMessage, enrichedDetails); // Fallback.
+				console.warn(logMessage, enrichedDetails);
 				break;
 		}
 	}

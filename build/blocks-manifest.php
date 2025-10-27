@@ -30,9 +30,17 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
+			'showPressedPreview' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
 			'url' => array(
 				'type' => 'string',
 				'default' => '#'
+			),
+			'isScrollToTop' => array(
+				'type' => 'boolean',
+				'default' => false
 			),
 			'rel' => array(
 				'type' => 'string'
@@ -131,8 +139,8 @@ return array(
 		'textdomain' => 'iconic-button',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'script' => 'file:./script.js'
+		'viewScript' => 'file:./script.js',
+		'style' => 'file:./style-index.css'
 	),
 	'icon-buttons' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

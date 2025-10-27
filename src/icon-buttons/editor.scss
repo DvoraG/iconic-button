@@ -3,7 +3,8 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-
-.wp-block-dgdev-icon-buttons {
+.wp-block-dgdev-icon-buttons
+	.wp-block-dgdev-icon-buttons-is-layout-flex.is-layout-flex {
 	box-sizing: border-box;
+	gap: 1em;
 }

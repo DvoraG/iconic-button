@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls,
@@ -13,13 +14,13 @@ import { useState, useEffect, useMemo } from '@wordpress/element';
 import IconButtonToolbar from '../controls/toolbar.js';
 import SettingControls from '../controls/setting-controls.js';
 import StylingControls from '../controls/styling-controls.js';
-import { setButtonInlineStyle } from '../components/color-control/color-utils.js';
+import { setButtonInlineStyle } from '../components/color-control/color-utils.js'; // clearDefaultColors added by Claude 2609
 import { getThemeContext } from '../utils/themeContext.js';
 import {
 	getIconSizePx,
 	setStyleVariant,
 	generateAriaLabel,
-	setRelAttribute,
+	setLinkAttributes,
 	getLinkClasses,
 	getThemeClass,
 } from '../utils/icon-button-utils.js';
@@ -48,6 +49,9 @@ import './editor.scss';
  * @param {string} props.attributes.iconLabel       Accessible label for the icon (used if no button text).
  * @param {string} props.attributes.ariaLabel       Aria-label attribute for the button.
  * @param {string} props.attributes.themeContext    Theme context (e.g., 'light' or 'dark').
+ * @param {boolean} props.attributes.isExternalLink Whether the link attached to the button is external.
+ * @param {boolean}  props.attributes.isScrollToTop  Whether the link is for scrolling to top.
+ * @param {boolean} props.attributes.showPressedPreview Option to preview the active state of an icon button in the editor.
  * @param {Object} props.setAttributes              Function to update block attributes, provided by `@wordpress/block-editor`.
  * @param {Object} props.clientId                   The unique client ID for the block instance.
  * @return {Element} The block editor interface for the iconic button block as a React component.
@@ -69,6 +73,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		iconLabel,
 		ariaLabel,
 		themeContext,
+		isExternalLink,
+		isScrollToTop,
+		showPressedPreview,
 	} = attributes;
 
 	const iconSizePx = getIconSizePx(iconSize);
@@ -106,29 +113,105 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 	useEffect(() => {
 		const newAriaLabel = generateAriaLabel(attributes);
-		const newRel = setRelAttribute(attributes);
-		// Determine the external link status
+
 		const isExternal =
 			url &&
 			url.startsWith('http') &&
 			!url.includes(window.location.hostname);
 
-		// Update the attributes
+		const { rel: newRel, target: newTarget } = setLinkAttributes({
+			...attributes,
+			isExternalLink: isExternal,
+		});
+
 		setAttributes({
 			isExternalLink: isExternal,
 			rel: newRel,
+			target: newTarget,
 			ariaLabel: newAriaLabel,
 		});
-	}, [url, buttonText, iconLabel, styleVariant, attributes, setAttributes]);
-
-	const linkClasses = getLinkClasses(attributes);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [
+		url,
+		target,
+		rel,
+		buttonText,
+		iconLabel,
+		styleVariant,
+		ariaLabel,
+		setAttributes,
+	]);
+	const linkClasses = `${getLinkClasses(attributes)} ${showPressedPreview ? 'is-pressed-preview is-focus-preview' : ''}`;
 	const themeClass = getThemeClass(themeContext);
 
 	const blockProps = useBlockProps({
 		className: themeClass,
-		tabIndex: 0,
-		style,
 	});
+
+	const content = (
+		<div className="wp-block-dgdev-icon-button__text">
+			{iconPosition === 'after' && showText && (
+				<span className="text-span-before">{buttonText}</span>
+			)}
+			{iconType === 'font-awesome' && fontAwesomeIcon && (
+				<i
+					className={`${fontAwesomeIcon} ${iconAnimation}`}
+					style={{ fontSize: iconSizePx }}
+					aria-hidden="true"
+				></i>
+			)}
+			{iconPosition === 'before' && showText && (
+				<span className="text-span-after">{buttonText}</span>
+			)}
+		</div>
+	);
+
+	const handleOnClick = (event) => {
+		event.preventDefault(); // Prevent all navigation in editor
+		setFeedbackMessage(__('Button was clicked', 'iconic-button'));
+	};
+
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault(); // Prevent all navigation in editor
+			setFeedbackMessage(__('Button was clicked', 'iconic-button'));
+		}
+	};
+
+	// component for non-linked button
+	const ButtonSpan = () => (
+		<span
+			role="button"
+			tabIndex={0}
+			className={linkClasses}
+			style={style}
+			aria-label={ariaLabel}
+			title={tooltip || iconLabel || ''}
+			onClick={handleOnClick}
+			onKeyDown={handleKeyDown}
+		>
+			{content}
+		</span>
+	);
+
+	// component for linked button
+	const ButtonAnchor = () => (
+		<a
+			className={linkClasses}
+			href={url}
+			target={target}
+			rel={rel}
+			style={style}
+			aria-label={ariaLabel}
+			title={tooltip || iconLabel || ''}
+			onClick={handleOnClick}
+		>
+			{content}
+			{isExternalLink && (
+				<div className="wp-block-dgdev-icon-button__indicator"></div>
+			)}
+		</a>
+	);
 
 	return (
 		<>
@@ -155,39 +238,11 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				/>
 			</InspectorControls>
 			<div {...blockProps}>
-				<a
-					className={linkClasses}
-					href={url}
-					target={target || '_self'}
-					rel={rel || ''}
-					style={style}
-					aria-label={ariaLabel}
-					title={tooltip || iconLabel || ''}
-					onClick={(e) => {
-						e.preventDefault();
-						setFeedbackMessage('Button was clicked');
-					}}
-				>
-					<div className="wp-block-dgdev-icon-button__text">
-						{iconPosition === 'after' && showText && (
-							<span className="text-span-before">
-								{buttonText}
-							</span>
-						)}
-						{iconType === 'font-awesome' && fontAwesomeIcon && (
-							<i
-								className={`${fontAwesomeIcon} ${iconAnimation}`}
-								style={{ fontSize: iconSizePx }}
-								aria-hidden="true"
-							></i>
-						)}
-						{iconPosition === 'before' && showText && (
-							<span className="text-span-after">
-								{buttonText}
-							</span>
-						)}
-					</div>
-				</a>
+				{!url || (url === '#' && !isScrollToTop) ? (
+					<ButtonSpan />
+				) : (
+					<ButtonAnchor />
+				)}
 				<div
 					className="wp-block-dgdev-icon-button__feedback sr-only"
 					aria-live="polite"

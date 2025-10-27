@@ -9,9 +9,8 @@ import {
 	getLinkClasses,
 	getThemeClass,
 	getIconSizePx,
-	setRelAttribute,
 } from '../utils/icon-button-utils';
-import { setButtonInlineStyle } from '../components/color-control/color-utils';
+import { getButtonInlineStyle } from '../components/color-control/color-utils';
 import './style.scss';
 
 /**
@@ -35,11 +34,15 @@ import './style.scss';
  * @param {string} props.attributes.tooltip         Tooltip text for the icon button.
  * @param {string} props.attributes.iconLabel       Accessible label for the icon (used if no button text).
  * @param {string} props.attributes.ariaLabel       Aria-label attribute for the button.
+ * @param {boolean} props.attributes.isExternalLink Whether the link attached to the button is external.
+ * @param {boolean}  props.attributes.isScrollToTop  Whether the link is for scrolling to top.
  * @return {Element} The frontend HTML as a React component.
  */
 const save = ({ attributes }) => {
 	const {
 		url,
+		rel,
+		target,
 		showText,
 		buttonText,
 		iconPosition,
@@ -51,45 +54,79 @@ const save = ({ attributes }) => {
 		tooltip,
 		iconLabel,
 		ariaLabel,
+		isExternalLink,
+		isScrollToTop,
 	} = attributes;
 
 	const linkClasses = getLinkClasses(attributes);
 	const themeClass = getThemeClass(themeContext);
-	const newRel = setRelAttribute(attributes);
-	const inlineStyle = setButtonInlineStyle({ attributes });
+	const inlineStyle = getButtonInlineStyle({ attributes });
 	const iconSizePx = getIconSizePx(iconSize);
 
+	const content = (
+		<>
+			<div className="wp-block-dgdev-icon-button__text">
+				{iconPosition === 'after' && showText && (
+					<span className="text-span-before">{buttonText}</span>
+				)}
+				{iconType === 'font-awesome' && fontAwesomeIcon && (
+					<i
+						className={`${fontAwesomeIcon} ${iconAnimation}`}
+						style={{ fontSize: iconSizePx }}
+						aria-hidden="true"
+					></i>
+				)}
+				{iconPosition === 'before' && showText && (
+					<span className="text-span-after">{buttonText}</span>
+				)}
+			</div>
+		</>
+	);
+
+	// Component for non-linked button
+	const ButtonSpan = () => (
+		<span
+			role="button"
+			tabIndex={0}
+			className={linkClasses}
+			style={inlineStyle}
+			title={tooltip || iconLabel || ''}
+			aria-label={ariaLabel}
+		>
+			{content}
+		</span>
+	);
+
+	// Component for linked button
+	const ButtonAnchor = () => (
+		<a
+			href={url}
+			target={target}
+			rel={rel}
+			className={linkClasses}
+			style={inlineStyle}
+			title={tooltip || iconLabel || ''}
+			aria-label={ariaLabel}
+			// tabIndex={0} not needed, <a> is natively focusable
+		>
+			{content}
+			{isExternalLink && (
+				<div className="wp-block-dgdev-icon-button__indicator"></div>
+			)}
+		</a>
+	);
 	return (
 		<div
 			{...useBlockProps.save({
 				className: themeClass,
+				// Remove tabIndex to avoid wrapper focus
 			})}
 		>
-			<a
-				href={url}
-				target={attributes.target || '_self'}
-				rel={newRel}
-				className={linkClasses}
-				style={inlineStyle}
-				title={tooltip || iconLabel || ''}
-				aria-label={ariaLabel}
-			>
-				<div className="wp-block-dgdev-icon-button__text">
-					{iconPosition === 'after' && showText && (
-						<span className="text-span-before">{buttonText}</span>
-					)}
-					{iconType === 'font-awesome' && fontAwesomeIcon && (
-						<i
-							className={`${fontAwesomeIcon} ${iconAnimation}`}
-							style={{ fontSize: iconSizePx }}
-							aria-hidden="true"
-						></i>
-					)}
-					{iconPosition === 'before' && showText && (
-						<span className="text-span-after">{buttonText}</span>
-					)}
-				</div>
-			</a>
+			{!url || (url === '#' && !isScrollToTop) ? (
+				<ButtonSpan />
+			) : (
+				<ButtonAnchor />
+			)}
 			<div
 				className="wp-block-dgdev-icon-button__feedback sr-only"
 				aria-live="polite"

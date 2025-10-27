@@ -14,6 +14,7 @@ import { useEffect, useRef } from '@wordpress/element';
  */
 import IconPicker from '../components/icon-picker-control/icon-picker';
 import { sanitizePlainText } from '../utils/sanitize-input';
+import './controls.scss';
 
 /**
  * Component that renders the settings controls in the block inspector.
@@ -32,6 +33,7 @@ import { sanitizePlainText } from '../utils/sanitize-input';
  * @param {boolean} props.attributes.showText       Whether to show button text.
  * @param {string} props.attributes.buttonText      Button text string.
  * @param {string} props.attributes.iconPosition    Icon position relative to text (e.g., 'before' or 'after').
+ * @param {boolean} props.attributes.showPressedPreview Show the active state (icon button pressed) in the editor.
  * @param {Function} props.setAttributes            Function to update block attributes, provided by `@wordpress/block-editor`.
  * @return {Element} The settings controls interface in the block inspector as a React component.
  */
@@ -44,6 +46,7 @@ const SettingsControl = ({ attributes, setAttributes }) => {
 		showText,
 		buttonText,
 		iconPosition,
+		showPressedPreview,
 	} = attributes;
 
 	const buttonTextRef = useRef(null);
@@ -53,6 +56,15 @@ const SettingsControl = ({ attributes, setAttributes }) => {
 			buttonTextRef.current.select();
 		}
 	}, [showText]);
+
+	useEffect(() => {
+		if (showPressedPreview) {
+			const timer = setTimeout(() => {
+				setAttributes({ showPressedPreview: false });
+			}, 1000);
+			return () => clearTimeout(timer);
+		}
+	}, [showPressedPreview, setAttributes]);
 
 	return (
 		<>
@@ -175,9 +187,38 @@ const SettingsControl = ({ attributes, setAttributes }) => {
 								}
 							}}
 							ref={buttonTextRef}
+							help={
+								buttonText?.length > 20 ? (
+									<span className="button-text-warning">
+										{__(
+											'Long text may wrap on mobile devices',
+											'iconic-button'
+										)}
+									</span>
+								) : (
+									<span className="button-text-help">
+										{__(
+											'Brief text works best for buttons',
+											'iconic-button'
+										)}
+									</span>
+								)
+							}
 						/>
 					</>
 				)}
+			</PanelBody>
+			<PanelBody title={__('Button State', 'iconic-button')}>
+				<ToggleControl
+					__nextHasNoMarginBottom
+					label={__('Show pressed state in editor', 'iconic-button')}
+					checked={showPressedPreview}
+					onChange={() =>
+						setAttributes({
+							showPressedPreview: !showPressedPreview,
+						})
+					}
+				/>
 			</PanelBody>
 		</>
 	);

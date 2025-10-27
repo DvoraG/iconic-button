@@ -1,49 +1,58 @@
 # Iconic Button
 
-Button that can receive an icon as label with or without text.
+A powerful, customizable button block for the WordPress Gutenberg editor, designed to make your buttons stand out with vibrant colors, FontAwesome icons, and flexible styling options.
 
 ## Description
 
-Modern websites need the ability to show buttons with text and icons or only icons.
-This is not easy to accomplish with the core/button especially not for users.
-The Iconic Button gives the user an easy way to create buttons with icons and or text.
-The design is kept close to the core button for leaving the underlying the design unchanged.
+Iconic Button is a lightweight WordPress plugin that adds a custom button block to the Gutenberg editor. It allows users to create visually appealing buttons with advanced color controls, icon support, and responsive design. Perfect for developers and site owners who want to enhance their WordPress sites with professional, user-friendly buttons.
 
-The Iconic Button is considered for modern FSE themes, that uses theme.json for defining
-colors and gradients as well as layouts.
+### Features
 
-Like the core/button the Iconic Button is added inside a parent container that is added to
-the inserter and called "icon buttons". Inside an icon button can be added by clicking the
-plus at the right end.
-This creates th default style "fill" a button. Colors, icons, border radius and variant can
-be adapted in the sidebar. A link will be added using the toolbar of the block.
+-   **Customizable Colors**: Use the advanced color control panel to set background, text, and hover colors.
+-   **FontAwesome Integration**: Add icons from FontAwesome to make your buttons pop.
+-   **Responsive Design**: Buttons adapt seamlessly to all screen sizes.
+-   **WPCS-Compliant**: Built with WordPress Coding Standards for reliability and compatibility.
+-   **Developer-Friendly**: Modular JavaScript with React, ESLint, Prettier, and Husky for clean code.
 
 ## Installation
 
-1. Upload the iconic-button.zip or install the plugin through the WordPress plugins screen
-   directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
+1. Clone or download this repository to your local machine.
+2. Navigate to the plugin folder: `wp-content/plugins/iconic-button`.
+3. Run `npm install` to install dependencies.
+4. Run `npm run build` to compile the block (outputs to `build/`).
+5. Upload the `iconic-button` folder to your WordPress site's `wp-content/plugins/` directory.
+6. Activate the plugin via the WordPress admin dashboard.
+7. Add the Iconic Button block in the Gutenberg editor and customize away!
 
-## Screenshots
+## Development
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-   the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-   directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-   (or jpg, jpeg, gif).
-2. This is the second screen shot
+### Prerequisites
 
-## Changelog
+-   Node.js and npm
+-   WordPress 6.6+
+-   Gutenberg editor
 
-= 1.0.0 =
+### Setup
 
-Initial Release
+1. Clone the repo: `git clone https://github.com/your-username/iconic-button.git`.
+2. Install dependencies: `npm install`.
+3. Run development server: `npm start`.
+4. Build for production: `npm run build`.
 
-## Third-Party Resources
+### Linting and Formatting
 
-This plugin uses FontAwesome Free icons:
+-   **ESLint**: `npx wp-scripts lint-js src/**/*.{js,jsx}` for WPCS-compliant JavaScript.
+-   **Prettier**: `npx wp-scripts format src/**/*.{js,jsx}` for consistent formatting.
+-   **Husky**: Pre-commit hooks ensure code quality with `lint-staged`.
 
-- **FontAwesome Free** - https://fontawesome.com
-- **License:** CC BY 4.0 License and SIL OFL 1.1 License
-- **Source:** https://github.com/FortAwesome/Font-Awesome
+## License
 
-FontAwesome Free is free, open source, and GPL-compatible.
+GPLv2 or later. See `LICENSE` for details.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or pull request on GitHub.
+
+## Support
+
+For questions or issues, open a GitHub issue or contact the developer at @example.com.

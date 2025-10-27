@@ -44,7 +44,9 @@ Thumbs.db
 *~
 
 # other files to ignore
+changed/
 docs/
+tmp*
 *.txt
 !readme.txt
 !LICENSE.txt

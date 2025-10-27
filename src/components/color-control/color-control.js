@@ -9,7 +9,6 @@ import {
 	PanelBody,
 	Button,
 } from '@wordpress/components';
-import { useEffect } from '@wordpress/element';
 import { ContrastChecker } from '@wordpress/block-editor';
 /**
  * Internal dependencies
@@ -53,30 +52,6 @@ const ColorControl = ({ attributes, setAttributes }) => {
 		baseColor,
 		contrastColor
 	);
-
-	// On mount and when relevant attributes change, ensure colors are set appropriately
-	useEffect(() => {
-		if (!gradient) {
-			setAttributes({
-				backgroundColor: backgroundColor
-					? backgroundColor
-					: defaultBackgroundColor,
-				textColor: textColor ? textColor : defaultTextColor,
-			});
-		} else {
-			setAttributes({
-				backgroundColor: undefined,
-			});
-		}
-	}, [
-		backgroundColor,
-		defaultBackgroundColor,
-		defaultTextColor,
-		setAttributes,
-		textColor,
-		gradient,
-		styleVariant,
-	]);
 
 	// Tabs array for the TabPanel component, defining 'background-color' and 'gradient' tabs.
 	const tabs = [
@@ -133,16 +108,19 @@ const ColorControl = ({ attributes, setAttributes }) => {
 												})
 											}
 										/>
-										<ContrastChecker
-											backgroundColor={
-												backgroundColor ||
-												defaultBackgroundColor
-											}
-											textColor={
-												textColor || defaultTextColor
-											}
-											isLargeText={false}
-										/>
+										{!gradient && (
+											<ContrastChecker
+												backgroundColor={
+													backgroundColor ||
+													defaultBackgroundColor
+												}
+												textColor={
+													textColor ||
+													defaultTextColor
+												}
+												isLargeText={false}
+											/>
+										)}
 									</>
 								);
 							} else if (tab.name === 'gradient') {

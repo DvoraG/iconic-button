@@ -1,39 +1,164 @@
 /**
- * The following styles get applied both on the front and in the editor.
+ * Icon Button Block Styles
+ * WCAG 2.1/2.2 Level AA Compliant
+ * WordPress Coding Standards Compliant
+ * RTL Ready
+ * @package DGDev_Icon_Button
+ * @version 1.0.0
  */
-:root {
-	--focus-color: #404040;
-	--focus-color-rgb: 64, 64, 64;
-	--active-color: #003087; /* Darker WordPress blue for text */
-	--active-background: rgb(
-		18,
-		112,
-		179
-	); /* Lighter WordPress blue for selected */
-	--active-background-rgb: 18, 112, 179;
-	--selected-background: #2e8bc9; /* Darker WordPress blue for fill selected */
-	--selected-background-rgb: 46, 139, 201;
-	--external-link-indiator: #e8c22c;
 
-	.is-theme-dark {
-		--focus-color: #d1d1d1;
-		--focus-color-rgb: 181, 181, 181;
-		--active-color: #99c7e6; /* Lighter WordPress blue for text */
-		--active-background: #80c0e6; /* Brighter WordPress blue for selected */
-		--active-background-rgb: 128, 192, 230;
-		--selected-background: #66b3e0; /* Darker WordPress blue for fill selected */
-		--selected-background-rgb: 102, 179, 224;
+/* ============================================================================
+   SCSS Mixins for DRY Code
+   ============================================================================ */
+
+@mixin focus-outline($offset: 4px) {
+	outline: 4px dashed var(--focus-color, #0073aa);
+	outline-offset: $offset;
+	z-index: 2;
+}
+
+@mixin focus-properties {
+	text-decoration: none !important;
+	filter: none;
+	box-shadow: none;
+	transform: none;
+}
+
+@mixin button-pressed-base($scale: 0.98) {
+	filter: none;
+	transform: scale($scale);
+	transition: none;
+}
+
+@mixin button-shadow-hover {
+	box-shadow:
+		2px 2px 2px rgba(128, 128, 128, 0.1),
+		4px 4px 2px rgba(128, 128, 128, 0.2),
+		6px 6px 2px rgba(128, 128, 128, 0.3),
+		8px 8px 2px rgba(128, 128, 128, 0.4);
+}
+
+@mixin button-shadow-active-fill($theme: "light") {
+	@if $theme == "light" {
+		box-shadow:
+			inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+			inset -3px -3px 8px rgba(0, 0, 0, 0.3);
+	} @else {
+		box-shadow:
+			inset 3px 3px 8px rgba(0, 0, 0, 0.6),
+			inset -2px -2px 6px rgba(255, 255, 255, 0.1);
 	}
 }
 
-.sr-only {
-	clip: rect(1px, 1px, 1px, 1px);
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
+@mixin button-shadow-active-outline($theme: "light") {
+	@if $theme == "light" {
+		box-shadow:
+			inset 3px 3px 8px rgba(0, 0, 0, 0.25),
+			inset -2px -2px 6px rgba(255, 255, 255, 0.3);
+	} @else {
+		box-shadow:
+			inset 3px 3px 8px rgba(0, 0, 0, 0.4),
+			inset -2px -2px 6px rgba(255, 255, 255, 0.15);
+	}
 }
 
+@mixin button-shadow-active-icon-fill {
+	box-shadow:
+		inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+		inset -2px -2px 3px rgba(255, 255, 255, 0.35);
+}
+
+@mixin button-shadow-active-icon-outline {
+	box-shadow:
+		inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+		inset -2px -2px 4px rgba(255, 255, 255, 0.2);
+}
+
+@mixin maintain-style-colors($dark: false) {
+	$contrast: if($dark, #1a8ccc, #0073aa);
+	$base: #e2e2e2;
+
+	&.is-style-fill {
+		background-color: var(--wp--preset--color--contrast, $contrast);
+		color: var(--wp--preset--color--base, $base);
+	}
+	&.is-style-outline {
+		background-color: transparent;
+		color: var(--wp--preset--color--contrast, $contrast);
+		border-color: currentColor;
+	}
+}
+
+/* ============================================================================
+   CSS Custom Properties
+   ============================================================================ */
+:root {
+	--focus-color: #404040;
+	--focus-color-rgb: 64, 64, 64;
+	--focus-text-color: #d1d1d1;
+	--focus-offset: 4px;
+	--focus-offset-indicator: 6px;
+	--active-color: #003087;
+	--active-background-rgb: 18, 112, 179;
+	--selected-background-rgb: 46, 139, 201;
+	--external-link-indicator: #008000;
+	--external-link-indicator-alt: #007acc;
+	--external-link-hover: #004f00;
+	--external-link-warning: #c60;
+	--button-size-small: 40px;
+	--button-size-medium: 44px;
+	--button-size-large: 48px;
+	--button-padding-small: 0.5em;
+	--button-padding-medium: 0.625em;
+	--button-padding-large: 0.75em;
+	--tooltip-bg: rgba(var(--focus-color-rgb), 0.9);
+	--tooltip-color: var(--focus-text-color);
+	--transition-fast: 0.2s ease;
+	--transition-medium: 0.3s ease;
+	--transition-slow: 0.5s ease;
+	--transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.is-theme-dark {
+	--focus-color: #d1d1d1;
+	--focus-color-rgb: 181, 181, 181;
+	--focus-text-color: #404040;
+	--active-color: #99c7e6;
+	--active-background-rgb: 128, 192, 230;
+	--selected-background-rgb: 102, 179, 224;
+	--external-link-indicator: #4ceb5e;
+	--external-link-hover: #0bbc20;
+}
+
+@media (prefers-contrast: high) {
+	:root {
+		--external-link-indicator: #000;
+		--external-link-hover: #333;
+	}
+	.is-theme-dark {
+		--external-link-indicator: #fff;
+		--external-link-hover: #ccc;
+	}
+}
+
+/* ============================================================================
+   Utility Classes
+   ============================================================================ */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* ============================================================================
+   Main Button Component Structure
+   ============================================================================ */
 .wp-block-dgdev-icon-button {
 	box-sizing: border-box;
 	display: inline-flex;
@@ -42,420 +167,558 @@
 	background-color: transparent;
 	position: relative;
 
-	.wp-block-dgdev-icon-button__link {
+	> i,
+	.text-span-before,
+	.text-span-after,
+	.wp-block-dgdev-icon-button__svg-wrapper {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		text-decoration: none !important;
-		min-width: 40px;
-		min-height: 40px;
-		padding: 0.5em;
-		box-sizing: border-box;
-		transition: all 0.5s ease;
-		position: relative;
+		color: inherit;
+		opacity: 1;
+	}
+}
 
-		@media (min-width: 782px) {
-			min-width: 44px;
-			min-height: 44px;
-			padding: 0.625em;
+/* ============================================================================
+   Button Link Element Base, States, and Variants (Merged for DRY)
+   ============================================================================ */
+.wp-block-dgdev-icon-button__link {
+	display: inline-flex;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none !important;
+	font-weight: bold;
+	box-sizing: border-box;
+	min-width: var(--button-size-small);
+	min-height: var(--button-size-small);
+	padding: var(--button-padding-small);
+	transition:
+		box-shadow var(--transition-medium),
+		filter var(--transition-fast),
+		background-color var(--transition-medium),
+		color var(--transition-fast);
+
+	// Focus styles
+	&:focus {
+		outline: none !important;
+		outline-width: 0 !important;
+		outline-style: none !important;
+	}
+	&:focus-visible {
+		outline: 4px dashed var(--focus-color, #0073aa) !important;
+		outline-offset: var(--focus-offset, 4px);
+		z-index: 2 !important;
+		@include focus-properties;
+
+		&.has-external-link {
+			outline-offset: var(--focus-offset-indicator, 6px);
+		}
+		@include maintain-style-colors;
+	}
+	&:focus-visible:active {
+		outline: 4px dashed var(--focus-color, #0073aa) !important;
+		outline-offset: var(--focus-offset, 4px) !important;
+
+		&.has-external-link {
+			outline-offset: var(--focus-offset-indicator, 6px) !important;
+		}
+		&.no-text {
+			outline-offset: 6px !important;
+
+			&.has-external-link {
+				outline-offset: 8px !important;
+			}
+		}
+	}
+
+	// Active state
+	&:active {
+		@include button-pressed-base(0.98);
+		@include maintain-style-colors;
+	}
+
+	// Icon-only button
+	&.no-text {
+		width: var(--button-size-small);
+		height: var(--button-size-small);
+		transition:
+			transform var(--transition-fast),
+			box-shadow var(--transition-medium),
+			filter var(--transition-fast),
+			background-color var(--transition-medium),
+			color var(--transition-fast);
+
+		&:hover:not(:focus-visible):not(:active) {
+			@include button-shadow-hover;
+		}
+		&:active {
+			@include button-pressed-base(0.95);
+
+			&.is-style-fill {
+				@include button-shadow-active-icon-fill;
+			}
+			&.is-style-outline {
+				@include button-shadow-active-icon-outline;
+			}
+		}
+	}
+
+	// Text buttons (icon + text or text only)
+	&:not(.no-text) {
+		position: relative;
+		z-index: 1;
+		width: auto;
+		height: auto;
+		min-height: var(--button-size-small);
+		padding: var(--button-padding-small) 1em;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			z-index: -1;
+			opacity: 0;
+			transition:
+				opacity var(--transition-fast),
+				box-shadow var(--transition-fast);
+			@include button-shadow-hover;
+			pointer-events: none;
 		}
 
-		@media (min-width: 1024px) {
-			min-width: 48px;
-			min-height: 48px;
-			padding: 0.75em;
+		&:hover:not(:focus-visible):not(:active)::after {
+			opacity: 1;
+		}
+
+		&:is(:focus-visible, :active)::after {
+			opacity: 0 !important;
+		}
+
+		&:active {
+			@include button-pressed-base(0.98);
+
+			&.is-style-fill {
+				@include button-shadow-active-fill("light");
+			}
+			&.is-style-outline {
+				@include button-shadow-active-outline("light");
+			}
+		}
+	}
+
+	// Style variants
+	&.is-style-outline {
+		background-color: transparent;
+		color: var(--wp--preset--color--contrast, #0073aa);
+		border: 2px solid currentColor;
+		transition:
+			transform var(--transition-fast),
+			box-shadow var(--transition-medium),
+			background-color var(--transition-medium),
+			border-color var(--transition-fast);
+	}
+}
+
+/* Fill style (parented for higher specificity) */
+.wp-block-dgdev-icon-button .wp-block-dgdev-icon-button__link.is-style-fill {
+	background-color: var(--wp--preset--color--contrast, #0073aa);
+	color: var(--wp--preset--color--base, #e2e2e2);
+}
+
+/* ============================================================================
+   Dark Theme Support (Merged)
+   ============================================================================ */
+/* stylelint-disable no-duplicate-selectors */
+// .is-theme-dark {
+.is-theme-dark .wp-block-dgdev-icon-button__link {
+	// .wp-block-dgdev-icon-button__link {
+	&.is-style-fill {
+		background-color: var(--wp--preset--color--contrast, #1a8ccc);
+	}
+	&.is-style-outline {
+		color: var(--wp--preset--color--contrast, #1a8ccc);
+	}
+	// Text buttons
+	&:not(.no-text):active {
+		&.is-style-fill {
+			@include button-shadow-active-fill("dark");
+		}
+		&.is-style-outline {
+			@include button-shadow-active-outline("dark");
+		}
+		@include maintain-style-colors(true);
+	}
+	// Icon-only buttons
+	&.no-text:active {
+		@include maintain-style-colors(true);
+	}
+}
+// }
+/* stylelint-enable no-duplicate-selectors */
+
+/* ============================================================================
+   Tooltip System
+   ============================================================================ */
+.wp-block-dgdev-icon-button__link.no-text[title] {
+	&::before {
+		content: attr(title);
+		position: absolute;
+		bottom: 150%;
+		left: 50%;
+		transform: translateX(-50%) translateY(5px);
+		background-color: var(--tooltip-bg);
+		color: var(--tooltip-color);
+		padding: 8px 12px;
+		border-radius: 6px;
+		white-space: nowrap;
+		z-index: 15;
+		pointer-events: none;
+		opacity: 0;
+		font-size: 16px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		min-width: max-content;
+		transition:
+			opacity var(--transition-medium),
+			transform var(--transition-bounce);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 115%;
+		left: 50%;
+		transform: translateX(-50%) translateY(20px);
+		border-width: 6px;
+		border-style: solid;
+		border-color: var(--tooltip-bg) transparent transparent transparent;
+		z-index: 5;
+		pointer-events: none;
+		opacity: 0;
+		transition:
+			opacity var(--transition-medium) ease-in,
+			transform var(--transition-bounce) ease-out;
+	}
+
+	&:hover::before,
+	&:hover::after {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+}
+
+/* ============================================================================
+   External Link Indicator
+   ============================================================================ */
+.wp-block-dgdev-icon-button__indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1;
+	outline-width: 3px;
+	outline-style: solid;
+	outline-color: var(--external-link-indicator);
+	outline-offset: 2px;
+	border-radius: inherit;
+	opacity: 0.85;
+	transition:
+		opacity 0.3s ease-out,
+		outline-color 0.3s ease-out;
+}
+
+.wp-block-dgdev-icon-button__link.is-style-outline
+	.wp-block-dgdev-icon-button__indicator {
+	outline-offset: 4px;
+}
+
+.wp-block-dgdev-icon-button__link:is(:hover, :focus, :focus-visible)
+	.wp-block-dgdev-icon-button__indicator {
+	opacity: 1;
+}
+
+/* ============================================================================
+   Text Content Wrapper (RTL support)
+   ============================================================================ */
+.wp-block-dgdev-icon-button__text {
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: max-content;
+	width: 100%;
+	height: 100%;
+	gap: 8px;
+	letter-spacing: 1.1px;
+	transition: letter-spacing var(--transition-fast);
+	flex-wrap: wrap;
+
+	.text-span-before,
+	.text-span-after {
+		white-space: normal;
+		word-wrap: break-word;
+		hyphens: auto;
+		max-width: 100%;
+	}
+
+	> .text-span-before {
+		padding-inline-start: 0.25em;
+	}
+
+	> .text-span-after {
+		padding-inline-end: 0.25em;
+	}
+}
+
+/* ============================================================================
+   Reduced Motion
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-dgdev-icon-button__link,
+	.wp-block-dgdev-icon-button__link::after,
+	.wp-block-dgdev-icon-button__link::before,
+	.wp-block-dgdev-icon-button__indicator {
+		transition: none;
+		animation: none;
+	}
+
+	.wp-block-dgdev-icon-button__link {
+		&:hover:not(:focus):not(:focus-visible) {
+			transform: none;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			filter: none;
+		}
+
+		&:is(a, button):focus-visible {
+			@include focus-outline(6px);
+			transform: none;
+			box-shadow: none;
+			filter: none;
+		}
+
+		&:is(a):focus-visible {
+			background-color: rgba(var(--active-background-rgb), 0.15);
+		}
+
+		&:focus:not(:focus-visible) {
+			outline: none;
+			background-color: rgba(var(--focus-color-rgb), 0.1);
+			box-shadow: 0 0 0 2px rgba(var(--focus-color-rgb), 0.3);
+		}
+
+		&:is(:focus, :focus-visible):hover {
+			filter: none;
+			box-shadow: none;
+			outline: 4px dashed var(--focus-color) !important;
+			outline-offset: 6px !important;
+		}
+
+		&:active {
+			transform: none;
+			box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4);
 		}
 
 		&.is-style-fill {
 			background-color: var(--wp--preset--color--contrast, #0073aa);
 			color: var(--wp--preset--color--base, #e2e2e2);
 
-			&:hover {
-				filter: brightness(1.2);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+			&:is(:hover, :focus, :focus-visible) {
+				background-color: var(--wp--preset--color--contrast, #0073aa);
+				filter: none;
+				opacity: 1;
 			}
 
 			&:active {
-				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
-				transition: none; /* Make active state instantaneous */
 				filter: brightness(0.9);
-
-				@media (max-width: 1023px) {
-					transform: scale(0.98); /* Subtle press feedback */
-					box-shadow:
-						inset 0 3px 6px rgba(0, 0, 0, 0.3),
-						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
-				}
+				background-color: var(--wp--preset--color--contrast, #0073aa);
 			}
 		}
 
 		&.is-style-outline {
-			background-color: transparent !important;
-			color: var(--wp--preset--color--contrast, #0073aa);
 			border: 2px solid currentColor;
+			background-color: transparent;
 
-			&:hover {
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-			}
-
-			&:active {
-				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
-				background-color: rgba(
-					var(--active-background-rgb, 18, 112, 179),
-					0.1
-				); /* Subtle active background */
-				transition: none;
-
-				@media (max-width: 1023px) {
-					transform: scale(0.98); /* Subtle press feedback */
-					box-shadow:
-						inset 0 3px 6px rgba(0, 0, 0, 0.3),
-						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
-				}
+			&:is(:hover, :focus-visible) {
+				background-color: rgba(var(--active-background-rgb), 0.1);
 			}
 		}
 
-		/* Icon only button */
-		&.no-text {
-			width: 40px;
-			height: 40px;
-			padding: 0.5em;
+		&.selected {
+			color: var(--active-color);
+			background-color: rgba(var(--active-background-rgb), 0.2);
 
-			@media (min-width: 782px) {
-				width: 44px;
-				height: 44px;
-				padding: 0.625em;
+			&:is(:focus, :focus-visible) {
+				outline: 4px dashed var(--focus-color) !important;
+				outline-offset: 6px !important;
 			}
 
-			@media (min-width: 1024px) {
-				width: 48px;
-				height: 48px;
-				padding: 0.75em;
-			}
+			&.is-style-fill {
+				background-color: var(--wp--preset--color--contrast, #0073aa);
+				color: var(--wp--preset--color--base, #e2e2e2);
 
-			&:hover {
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-			}
-
-			&:active {
-				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
-				transition: none;
-
-				@media (max-width: 1023px) {
-					transform: scale(0.98); /* Subtle press feedback */
-					box-shadow:
-						inset 0 3px 6px rgba(0, 0, 0, 0.3),
-						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
-				}
-			}
-		}
-
-		&:hover {
-			transform: scale(1.05); /* Subtle zoom effect */
-			font-weight: bold;
-		}
-
-		&.external-link {
-			position: relative;
-		}
-
-		/* External link indicator */
-		&.external-link:hover::before {
-			content: "";
-			display: block;
-			width: 8px;
-			height: 8px;
-			border-radius: 50%;
-			background-color: var(--external-link-indiator);
-			position: absolute;
-			top: 8px;
-			right: 16px;
-			pointer-events: none;
-
-			@media (min-width: 782px) {
-				width: 9px;
-				height: 9px;
-				top: 3px;
-				right: 18px;
-			}
-
-			@media (min-width: 1024px) {
-				width: 10px;
-				height: 10px;
-				top: 2px;
-				right: 20px;
-			}
-		}
-
-		&.no-text.external-link:hover::before {
-			content: "";
-			top: 4px;
-			right: 12px;
-
-			@media (min-width: 782px) {
-				top: 6px;
-				right: 14px;
-			}
-
-			@media (min-width: 1024px) {
-				top: 8px;
-				right: 16px;
-			}
-		}
-
-		&:focus,
-		&:focus-visible {
-			outline: 4px dashed var(--focus-color, #0073aa);
-			outline-offset: 4px;
-		}
-
-		&:focus:not(:focus-visible) {
-			outline: none;
-		}
-
-		@media (max-width: 781px) {
-			&:focus,
-			&:focus-visible {
-				outline: 2px solid var(--focus-color, #0073aa);
-				outline-offset: 2px;
-			}
-
-			/* Tablet override */
-			@media (min-width: 782px) and (max-width: 1023px) {
-				&:focus,
-				&:focus-visible {
-					outline: 3px solid var(--focus-color, #0073aa);
-					outline-offset: 3px;
-				}
-			}
-		}
-
-		/* START hover / mouse over effect for icon only buttons */
-		&.no-text[title]:hover {
-			width: auto;
-			min-width: 40px;
-			padding: 0.5em 1em;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: all 0.5s ease;
-
-			@media (min-width: 782px) {
-				min-width: 44px;
-				padding: 0.625em 1.25em;
-			}
-
-			@media (min-width: 1024px) {
-				min-width: 48px;
-				padding: 0.75em 1.5em;
-			}
-		}
-
-		&.no-text[title]:hover::after {
-			content: attr(title); /* Show tooltip text */
-			text-transform: uppercase;
-			letter-spacing: 1.5px;
-			font-size: 0.9em; /* Smaller for .no-text */
-			font-weight: 600;
-			color: currentColor; /* Match icon color */
-			white-space: nowrap;
-			transition: opacity 0.5s ease;
-		}
-
-		&.no-text:hover i {
-			opacity: 0; /* Hide icon for .no-text on hover/focus */
-			display: none;
-		}
-		/* END hover / mouse over effect */
-
-		&:not(.no-text) {
-			width: auto; /* Allow text buttons to expand */
-			aspect-ratio: auto; /* Prevent square constraint */
-			padding: 0.5em 1em; /* Consitent padding for text buttons */
-			position: relative;
-
-			@media (min-width: 782px) {
-				padding: 0.625em 1.25em;
-			}
-
-			@media (min-width: 1024px) {
-				padding: 0.75em 1.5em;
-			}
-
-			&:hover {
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-			}
-
-			&:active {
-				box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
-				transition: none;
-
-				@media (max-width: 1023px) {
-					transform: scale(0.98); /* Subtle press feedback */
-					box-shadow:
-						inset 0 3px 6px rgba(0, 0, 0, 0.3),
-						0 0 0 2px rgba(var(--focus-color-rgb, 64, 64, 64), 0.4);
-				}
-			}
-		}
-
-		> i,
-		span,
-		.wp-block-dgdev-icon-button__svg-wrapper {
-			display: inline-flex; // Change to inline-flex for better centering
-			align-items: center;
-			justify-content: center;
-			color: inherit !important;
-			opacity: 1;
-		}
-
-		.wp-block-dgdev-icon-button__svg-wrapper {
-			opacity: 1; /* visible by default */
-		}
-
-		/*** PREFERS REDUCED MOTION START ***/
-		@media (prefers-reduced-motion: reduce) {
-			&:hover,
-			&:focus,
-			&:focus-visible {
-				transition: none; /* Disable transitions */
-				box-shadow: none;
-				font-weight: bold;
-				opacity: 0.9; /* Subtle fade for hover */
-
-				outline: 2px solid var(--focus-color, #0073aa);
-				outline-offset: 2px;
-				background-color: rgba(
-					var(--active-background-rgb, 18, 112, 179),
-					0.25
-				);
-
-				/* Remove responsive focus complexity for reduced motion */
-				@media (max-width: 781px) {
-					outline: 2px solid var(--focus-color, #0073aa);
-					outline-offset: 1px;
-					background-color: rgba(
-						var(--active-background-rgb, 18, 112, 179),
-						0.3
-					); /* Higher for mobile */
-					color: var(--active-color, #0073aa);
-				}
-
-				@media (min-width: 782px) and (max-width: 1023px) {
-					outline: 2px solid var(--focus-color, #0073aa);
-					outline-offset: 2px;
-				}
-			}
-
-			/* Remove focus-visible complexity for reduced motion */
-			&:focus:not(:focus-visible) {
-				outline: none;
-				background-color: rgba(var(--focus-color-rgb, 64, 64, 64), 0.1);
-			}
-
-			&:active {
-				transition: none;
-				box-shadow: none;
-				transform: none; /* Remove any scale transforms */
-			}
-
-			&.selected {
-				transition: none;
-				box-shadow: none;
-				color: var(--active-color, #0073aa);
-				background-color: rgba(
-					var(--active-background-rgb, 18, 112, 179),
-					0.2
-				);
-
-				/* Simplified focus for selected state */
-				&:focus,
-				&:focus-visible {
-					outline: 2px solid var(--focus-color, #0073aa);
-					outline-offset: 1px;
-				}
-
-				&.is-style-fill {
-					background-color: rgba(
-						var(--selected-background-rgb, 18, 112, 179),
-						0.9
+				&:is(:hover, :focus-visible) {
+					background-color: var(
+						--wp--preset--color--contrast,
+						#0073aa
 					);
-					color: var(--wp--preset--color--base, #e2e2e2);
-				}
-
-				&.is-style-outline {
-					background-color: rgba(
-						var(--active-background-rgb, 18, 112, 179),
-						0.3
-					);
-					color: var(--active-color, #0073aa) !important;
-					border-color: currentColor;
-				}
-
-				&.no-text {
-					background-color: rgba(
-						var(--active-background-rgb, 18, 112, 179),
-						0.2
-					);
-					color: var(--active-color, #0073aa);
-				}
-
-				&:not(.no-text) {
-					text-decoration: underline;
+					opacity: 1;
+					filter: none;
 				}
 			}
 
-			&.no-text:active,
-			&.no-text:hover {
-				transition: none; /* Disable width/height transition */
-				box-shadow: none;
-				transform: none; /* Remove any scaling effects */
+			&.is-style-outline {
+				background-color: rgba(var(--active-background-rgb), 0.2);
+				color: var(--active-color);
+				border-color: currentColor;
 			}
 
-			&.no-text[title]:hover,
-			&.no-text[title]:hover::after,
-			&.no-text[title]:active,
-			&.no-text[title]:active::after,
-			&.no-text[title].selected,
-			&.no-text[title].selected::after {
-				transition: none;
-				letter-spacing: normal;
-				transform: none; /* Remove scaling */
+			&.no-text {
+				background-color: rgba(var(--active-background-rgb), 0.2);
+				color: var(--active-color);
 			}
 
 			&:not(.no-text) {
-				font-weight: bold;
+				min-height: var(--button-size-large);
+				padding: var(--button-padding-large) 1.5em;
 			}
 		}
-		/*** PREFERS REDUCED MOTION END ***/
 	}
 
 	.wp-block-dgdev-icon-button__text {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-width: max-content;
-		width: 100%;
-		height: 100%;
-		gap: 8px;
-		letter-spacing: 1.1px;
+		gap: 12px;
+		letter-spacing: 1.3px;
+	}
+}
 
-		@media (min-width: 782px) {
-			gap: 10px;
-			letter-spacing: 1.2px;
+/* ============================================================================
+   High Contrast Mode
+   ============================================================================ */
+@media (prefers-contrast: high) {
+	.wp-block-dgdev-icon-button
+		.wp-block-dgdev-icon-button__link:is(a, button):focus-visible {
+		outline-width: 4px;
+		outline-style: solid;
+	}
+
+	.wp-block-dgdev-icon-button__link.is-style-fill {
+		border: 2px solid transparent;
+	}
+
+	.wp-block-dgdev-icon-button__indicator {
+		outline-width: 4px;
+		outline-style: solid;
+	}
+}
+
+/* ============================================================================
+   Mobile/Touch Optimization (WordPress Standard: 768px)
+   ============================================================================ */
+@media (max-width: 768px) {
+	.wp-block-dgdev-icon-button__link {
+		min-width: 44px;
+		min-height: 44px;
+
+		&:is(:hover, :focus, :focus-visible) {
+			outline-offset: 2px;
+			background-color: rgba(var(--active-background-rgb), 0.2);
+			color: var(--active-color);
 		}
 
-		@media (min-width: 1024px) {
-			gap: 12px;
-			letter-spacing: 1.3px;
+		&:active {
+			box-shadow:
+				inset 0 3px 6px rgba(0, 0, 0, 0.3),
+				0 0 0 2px rgba(var(--focus-color-rgb), 0.3);
 		}
+	}
 
-		> .text-span-before {
-			padding-inline-start: 0.25em;
-		}
+	.wp-block-dgdev-icon-button__text {
+		gap: 6px;
+		letter-spacing: 1px;
 
+		> .text-span-before,
 		> .text-span-after {
-			padding-inline-end: 0.25em;
+			word-break: break-word;
+			hyphens: auto;
+			max-width: calc(100vw - 120px);
 		}
+	}
+}
+
+/* ============================================================================
+   Responsive Design - Tablet
+   ============================================================================ */
+@media (min-width: 769px) and (max-width: 1023px) {
+	.wp-block-dgdev-icon-button__link {
+		min-width: var(--button-size-medium);
+		min-height: var(--button-size-medium);
+
+		&.no-text {
+			width: var(--button-size-medium);
+			height: var(--button-size-medium);
+		}
+
+		&:not(.no-text) {
+			min-height: var(--button-size-medium);
+			padding: var(--button-padding-medium) 1.25em;
+		}
+	}
+
+	.wp-block-dgdev-icon-button__text {
+		gap: 10px;
+		letter-spacing: 1.2px;
+	}
+}
+
+/* ============================================================================
+   Responsive Design - Desktop
+   ============================================================================ */
+@media (min-width: 1024px) {
+	.wp-block-dgdev-icon-button__link {
+		min-width: var(--button-size-large);
+		min-height: var(--button-size-large);
+
+		&.no-text {
+			width: var(--button-size-large);
+			height: var(--button-size-large);
+		}
+
+		&:not(.no-text) {
+			min-height: var(--button-size-large);
+			padding: var(--button-padding-large) 1.5em;
+		}
+	}
+
+	.wp-block-dgdev-icon-button__text {
+		gap: 12px;
+		letter-spacing: 1.3px;
+	}
+}
+
+/* ============================================================================
+   RTL (Right-to-Left) Support
+   ============================================================================ */
+.wp-block-dgdev-icon-button,
+[dir="rtl"] .wp-block-dgdev-icon-button {
+	direction: inherit;
+}
+
+[dir="rtl"] .wp-block-dgdev-icon-button__text {
+	direction: rtl;
+	letter-spacing: 0.5px;
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+	[dir="rtl"] .wp-block-dgdev-icon-button__text {
+		letter-spacing: 0.8px;
+	}
+}
+
+@media (min-width: 1024px) {
+	[dir="rtl"] .wp-block-dgdev-icon-button__text {
+		letter-spacing: 1px;
 	}
 }

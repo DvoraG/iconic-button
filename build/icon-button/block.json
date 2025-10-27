@@ -25,9 +25,17 @@
       "type": "boolean",
       "default": false
     },
+    "showPressedPreview": {
+      "type": "boolean",
+      "default": false
+    },
     "url": {
       "type": "string",
       "default": "#"
+    },
+    "isScrollToTop": {
+      "type": "boolean",
+      "default": false
     },
     "rel": {
       "type": "string"
@@ -126,6 +134,6 @@
   "textdomain": "iconic-button",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "script": "file:./script.js"
+  "viewScript": "file:./script.js",
+  "style": "file:./style-index.css"
 }

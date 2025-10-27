@@ -1,55 +1,52 @@
 === Iconic Button ===
-Contributors:      Dvora Gvili
-Tags:              block, button, icon
-Tested up to:      6.8
-Stable tag:        1.0.0
-License:		   GPL-2.0-or-later
-License URI:	   https://www.gnu.org/licenses/gpl-2.0.html
+Contributors: Dvora Gvili
+Tags: block, button, gutenberg, fontawesome, customize
+Requires at least: 6.6
+Tested up to: 6.8
+Stable tag: 1.0.0
+Requires PHP: 7.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Button that can receive an icon as label with or without text.
+A customizable button block for the WordPress Gutenberg editor with advanced color controls and FontAwesome icons.
 
 == Description ==
 
-Modern websites need the ability to show buttons with text and icons or only icons.
-This is not easy to accomplish with the core/button especially not for users.
-The Iconic Button gives the user an easy way to create buttons with icons and or text.
-The design is kept close to the core button for leaving the underlying the design unchanged.
-
-The Iconic Button is considered for modern FSE themes, that uses theme.json for defining
-colors and gradients as well as layouts.
-
-Like the core/button the Iconic Button is added inside a parent container that is added to
-the inserter and called "icon buttons". Inside an icon button can be added by clicking the
-plus at the right end.
-This creates th default style "fill" a button. Colors, icons, border radius and variant can
-be adapted in the sidebar. A link will be added using the toolbar of the block.
+Iconic Button is a versatile WordPress plugin that adds a custom button block to the Gutenberg editor. 
+Create stunning buttons with flexible color options, FontAwesome icons, and responsive styling. 
+Ideal for enhancing call-to-actions, links, and more.
 
 == Installation ==
 
-1. Upload the iconic-button.zip or install the plugin through the WordPress plugins screen
-	directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
+1. Download the plugin ZIP file.
+2. Upload the `iconic-button` folder to your WordPress site's `wp-content/plugins/` directory.
+3. Activate the plugin via the WordPress admin dashboard.
+4. In the Gutenberg editor, add the Iconic Button block and customize its colors and icons.
+
+== Frequently Asked Questions ==
+
+= Does this plugin work with any theme? =
+Yes, Iconic Button is compatible with any WordPress theme that supports the Gutenberg editor.
+
+= Can I use my own icons? =
+Currently, the plugin supports FontAwesome icons. Custom icon support may be added in future updates.
+
+= Is it developer-friendly? =
+Absolutely! The plugin is built with React, `@wordpress/scripts`, ESLint, Prettier, and Husky for a clean, 
+maintainable codebase.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Iconic Button block in the Gutenberg editor.
+2. Advanced color control panel for customizing button styles.
+3. Example button with FontAwesome icon and hover effects.
 
 == Changelog ==
 
-= 0.1.1 =
-Added custom color controls.
-Fixed color issues when changing from outlined variant to the filled.
-Set initial border radius to 0.
+= 1.0.0 =
+* Initial release with customizable button block, color controls, and FontAwesome integration.
 
-= 0.1.0 =
-* Initial Release
+== Upgrade Notice ==
 
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+= 1.0.0 =
+Initial release. No upgrades yet.

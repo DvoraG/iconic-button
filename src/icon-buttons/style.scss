@@ -7,8 +7,10 @@
 
 .wp-block-dgdev-icon-buttons {
 	box-sizing: border-box;
+	position: relative;
+	margin-block: 1.5em;
 
 	&.is-layout-flex {
-		flex-wrap: nowrap !important;
+		gap: 1em;
 	}
 }
