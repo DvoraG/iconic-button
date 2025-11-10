@@ -43,7 +43,7 @@
 }
 
 /* ============================================================================
-   Editor-Specific Overrides (Prevent Navigation & Ensure Visibility)
+   Editor-Specific Overrides
    ============================================================================ */
 
 /* Prevent navigation in editor */
@@ -52,18 +52,16 @@
 	cursor: default;
 }
 
-/* CRITICAL: Override WordPress editor's default a:focus styles */
+/* Override WordPress editor's default a:focus styles */
 .editor-styles-wrapper .wp-block-dgdev-icon-button__link:is(a):focus {
 	text-decoration: none !important;
 	outline: none !important;
 	text-decoration-skip-ink: auto !important;
 
-	/* Remove white background only for outline variant */
 	&.is-style-outline {
 		background: transparent !important;
 	}
 
-	/* Preserve fill variant background */
 	&.is-style-fill {
 		background-color: var(--wp--preset--color--contrast, #0073aa);
 	}
@@ -88,14 +86,13 @@
 }
 
 /* ============================================================================
-   Focus & Active States (High Specificity for Editor)
-   State Priority: focus-visible > active > hover
+   Focus & Active States
    ============================================================================ */
 
 .editor-styles-wrapper
 	.wp-block-dgdev-icon-button
 	.wp-block-dgdev-icon-button__link {
-	/* KEYBOARD FOCUS (Highest Priority) */
+	/* KEYBOARD FOCUS */
 	&:is(a, button):is(:focus-visible, .is-focus-preview) {
 		@include focus-outline(var(--focus-offset, 4px));
 		@include focus-properties;
@@ -116,7 +113,6 @@
 			}
 		}
 
-		/* Maintain style colors during focus */
 		@include maintain-style-colors;
 	}
 
@@ -126,20 +122,17 @@
 
 		/* Text Button Shadows */
 		&:not(.no-text) {
-			/* Default/Generic Pressed Shadow */
 			box-shadow:
 				inset 3px 3px 8px rgba(0, 0, 0, 0.4),
 				inset -2px -2px 6px rgba(0, 0, 0, 0.2);
 
 			&.is-style-fill {
-				/* Light Theme Fill Shadow */
 				box-shadow:
 					inset 4px 4px 10px rgba(0, 0, 0, 0.5),
 					inset -3px -3px 8px rgba(0, 0, 0, 0.3);
 			}
 
 			&.is-style-outline {
-				/* Light Theme Outline Shadow */
 				box-shadow:
 					inset 3px 3px 8px rgba(0, 0, 0, 0.25),
 					inset -2px -2px 6px rgba(255, 255, 255, 0.3);
@@ -151,14 +144,12 @@
 			@include button-pressed-base(0.95);
 
 			&.is-style-fill {
-				/* Icon-Only Fill Shadow */
 				box-shadow:
 					inset 2px 2px 4px rgba(0, 0, 0, 0.5),
 					inset -2px -2px 3px rgba(255, 255, 255, 0.35);
 			}
 
 			&.is-style-outline {
-				/* Icon-Only Outline Shadow */
 				box-shadow:
 					inset 2px 2px 4px rgba(0, 0, 0, 0.4),
 					inset -2px -2px 4px rgba(255, 255, 255, 0.2);
@@ -177,13 +168,12 @@
 			}
 		}
 
-		/* CRITICAL: Maintain user colors during pressed state */
 		@include maintain-style-colors;
 	}
 }
 
 /* ============================================================================
-   Dark Theme Support in Editor (Focus/Active Overrides)
+   Dark Theme Support in Editor
    ============================================================================ */
 
 .editor-styles-wrapper .is-theme-dark {
@@ -192,20 +182,17 @@
 		/* Dark Theme Text Button Shadows */
 		&:not(.no-text) {
 			&.is-style-fill {
-				/* Dark Theme Fill Shadow */
 				box-shadow:
 					inset 3px 3px 8px rgba(0, 0, 0, 0.6),
 					inset -2px -2px 6px rgba(255, 255, 255, 0.1);
 			}
 			&.is-style-outline {
-				/* Dark Theme Outline Shadow */
 				box-shadow:
 					inset 3px 3px 8px rgba(0, 0, 0, 0.4),
 					inset -2px -2px 6px rgba(255, 255, 255, 0.15);
 			}
 		}
 
-		/* Dark Theme Color Maintenance */
 		@include maintain-style-colors(true);
 	}
 }

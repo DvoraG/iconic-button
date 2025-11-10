@@ -21,8 +21,6 @@ const getThemeContext = () => {
 
 		const baseColor = blockEditorSelector
 			?.getSettings()
-			// changed next line 03/10 18:56
-			// ?.colors?.find((color) => color.slug === 'base')?.color;
 			?.colors?.find(
 				(color) => color.slug === 'base' || color.slug === 'background'
 			)?.color;
@@ -34,8 +32,6 @@ const getThemeContext = () => {
 
 		const contrastColor = blockEditorSelector
 			?.getSettings()
-			// changed next line 03/10 18:56
-			// ?.colors?.find((color) => color.slug === 'contrast')?.color;
 			?.colors?.find(
 				(color) =>
 					color.slug === 'contrast' || color.slug === 'foreground'
@@ -46,22 +42,6 @@ const getThemeContext = () => {
 			return fallbackThemeContext();
 		}
 
-		// const isDark = (color) => {
-		// 	const rgb = color.match(
-		// 		/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
-		// 	);
-		// 	if (rgb) {
-		// 		const r = parseInt(rgb[1], 16);
-		// 		const g = parseInt(rgb[2], 16);
-		// 		const b = parseInt(rgb[3], 16);
-
-		// 		const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-		// 		return luminance < 128; // Threshold for dark
-		// 	}
-		// 	return false;
-		// };
-
-		// const newContext = isDark(baseColor) ? 'dark' : 'light';
 		const newContext = checkIsDark(baseColor) ? 'dark' : 'light';
 		return { newContext, baseColor, contrastColor };
 	} catch (error) {

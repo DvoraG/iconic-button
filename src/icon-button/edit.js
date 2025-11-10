@@ -173,7 +173,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter' || event.key === ' ') {
-			event.preventDefault(); // Prevent all navigation in editor
+			event.preventDefault();
 			setFeedbackMessage(__('Button was clicked', 'iconic-button'));
 		}
 	};

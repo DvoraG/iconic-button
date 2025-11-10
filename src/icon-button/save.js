@@ -119,7 +119,6 @@ const save = ({ attributes }) => {
 		<div
 			{...useBlockProps.save({
 				className: themeClass,
-				// Remove tabIndex to avoid wrapper focus
 			})}
 		>
 			{!url || (url === '#' && !isScrollToTop) ? (

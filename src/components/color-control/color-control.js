@@ -144,6 +144,9 @@ const ColorControl = ({ attributes, setAttributes }) => {
 														'WebAIM Contrast Checker',
 														'iconic-button'
 													)}
+													<span className="sr-only">
+														(opens in a new tab)
+													</span>
 												</a>
 												{__(
 													'for accessibility (WCAG ≥ 4.5:1).',

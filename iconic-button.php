@@ -40,12 +40,12 @@ if ( defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  */
 function iconic_button_log( $level, $message, $details = array() ) {
 	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
-		return; // Only log if WP_DEBUG is enabled.
+		return; 
 	}
 
 	$levels = array( 'error', 'warning' );
 	if ( ! in_array( $level, $levels, true ) ) {
-		$level = 'warning'; // Default fallback.
+		$level = 'warning'; 
 	}
 
 	$log_message = sprintf(
@@ -85,37 +85,6 @@ function iconic_button_block_init() {
 }
 add_action( 'init', __NAMESPACE__ . '\iconic_button_block_init' );
 
-/**
- * Enqueue FontAwesome styles on the frontend when the Iconic Button block is present.
- *
- * Checks if the 'dgdev/icon-button' block is used in the current post and enqueues
- * FontAwesome CSS only if needed.
- *
- * @since 1.0.0
- * @return void
- */
-// function iconic_button_enqueue_fontawesome_frontend() {
-// 	static $already_run = false;
-
-// 	if ( is_admin() || $already_run ) {
-// 		return;
-// 	}
-
-// 	$already_run = true;
-
-// 	global $post;
-// 	if ( $post && has_block( 'dgdev/icon-button', $post ) ) {
-// 		$fontawesome_url = plugins_url( 'assets/fontawesome-free-' . \ICONIC_BUTTON_FA_VERSION . '-web/css/all.min.css', __FILE__ );
-// 		wp_enqueue_style(
-// 			'fontawesome-frontend',
-// 			$fontawesome_url,
-// 			array(),
-// 			\ICONIC_BUTTON_FA_VERSION,
-//       'all' // Load in footer to avoid render blocking
-// 		);
-// 	}
-// }
-// add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\iconic_button_enqueue_fontawesome_frontend' );
 
 /**
  * Enqueues necessary frontend assets (FontAwesome CSS and theme detection JS) 
@@ -148,16 +117,6 @@ function iconic_button_enqueue_frontend_assets() {
             \ICONIC_BUTTON_FA_VERSION,
             'all'
         );
-        
-        // B. Enqueue Theme Detection Script (NEW Logic)
-        // This script is crucial for theme class detection on the frontend.
-        // wp_enqueue_script(
-        //     'dgdev-iconic-button-view-script', // Unique handle
-        //     plugins_url( 'build/icon-button/script.js', __FILE__ ), // Adjust path if needed
-        //     array(), // No dependencies necessary for this script
-        //     \ICONIC_BUTTON_VERSION, // Use plugin version for cache busting
-        //     true // Enqueue in the footer (defer)
-        // );
     }
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\iconic_button_enqueue_frontend_assets' );

@@ -252,25 +252,21 @@ function parseSvgToReact(svgString, size) {
 		const svgElement = doc.documentElement;
 		sanitizeElement(svgElement, size);
 
-		// Remove unnecessary XML attributes
 		svgElement.removeAttribute('xmlns:xlink');
 		svgElement.removeAttribute('xml:space');
 		svgElement.removeAttribute('xmlns:serif');
 
-		// Apply size if provided
 		if (size) {
 			svgElement.setAttribute('width', size);
 			svgElement.setAttribute('height', size);
 		}
 
-		// Set default fill if not present
 		if (!svgElement.hasAttribute('fill')) {
 			svgElement.setAttribute('fill', DEFAULT_FILL);
 		}
 
 		return domToReact(svgElement);
 	} catch (error) {
-		// Return graceful fallback instead of throwing
 		return createErrorFallback('Icon could not be loaded', 'error');
 	}
 }
