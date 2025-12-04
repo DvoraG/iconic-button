@@ -1,17 +1,17 @@
 <?php
 /**
  * Plugin Name:       Iconic Button
- * Description:       A customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons.
+ * Description:       Free version of a customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons.
  * Version:           1.0.0
  * Requires at least: 6.6
- * Tested up tp:      6.8
+ * Tested up tp:      6.9
  * Requires PHP:      7.4
  * Author:            Dvora Gvili
  * Author URI:        https://www.dgdev-studio.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       iconic-button
- * Domain Path:       /languages/
+ * Domain Path:       /languages
  *
  * @package Dgdev
  */
@@ -40,12 +40,12 @@ if ( defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  */
 function iconic_button_log( $level, $message, $details = array() ) {
 	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
-		return; 
+		return;
 	}
 
 	$levels = array( 'error', 'warning' );
 	if ( ! in_array( $level, $levels, true ) ) {
-		$level = 'warning'; 
+		$level = 'warning';
 	}
 
 	$log_message = sprintf(
@@ -87,37 +87,37 @@ add_action( 'init', __NAMESPACE__ . '\iconic_button_block_init' );
 
 
 /**
- * Enqueues necessary frontend assets (FontAwesome CSS and theme detection JS) 
+ * Enqueues necessary frontend assets (FontAwesome CSS and theme detection JS)
  * when the Iconic Button block is present on the page.
  *
  * @since 1.0.0
  * @return void
  */
 function iconic_button_enqueue_frontend_assets() {
-    static $already_run = false;
+	static $already_run = false;
 
-    // 1. Only run on the frontend and only once
-    if ( is_admin() || $already_run ) {
-        return;
-    }
+	// 1. Only run on the frontend and only once
+	if ( is_admin() || $already_run ) {
+		return;
+	}
 
-    $already_run = true;
+	$already_run = true;
 
-    global $post;
-    
-    // 2. Check if the block is used on the current post/page
-    if ( $post && has_block( 'dgdev/icon-button', $post ) ) {
-        
-        // A. Enqueue FontAwesome CSS (Existing Logic)
-        $fontawesome_url = plugins_url( 'assets/fontawesome-free-' . \ICONIC_BUTTON_FA_VERSION . '-web/css/all.min.css', __FILE__ );
-        wp_enqueue_style(
-            'fontawesome-frontend',
-            $fontawesome_url,
-            array(),
-            \ICONIC_BUTTON_FA_VERSION,
-            'all'
-        );
-    }
+	global $post;
+
+	// 2. Check if the block is used on the current post/page
+	if ( $post && has_block( 'dgdev/icon-button', $post ) ) {
+
+		// A. Enqueue FontAwesome CSS (Existing Logic)
+		$fontawesome_url = plugins_url( 'assets/fontawesome-free-' . \ICONIC_BUTTON_FA_VERSION . '-web/css/all.min.css', __FILE__ );
+		wp_enqueue_style(
+			'fontawesome-frontend',
+			$fontawesome_url,
+			array(),
+			\ICONIC_BUTTON_FA_VERSION,
+			'all'
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\iconic_button_enqueue_frontend_assets' );
 
@@ -175,34 +175,49 @@ add_action( 'enqueue_block_assets', __NAMESPACE__ . '\iconic_button_enqueue_font
  * @return string The modified tag.
  */
 function iconic_button_optimize_assets( $tag, $handle ) {
-    // 1. Defer the JavaScript file (script.js)
-    if ( 'dgdev-icon-button-script' === $handle ) {
-        // This script is an event listener and can be safely deferred.
-        return str_replace( '<script ', '<script defer ', $tag );
-    }
+	// 1. Defer the JavaScript file (script.js)
+	if ( 'dgdev-icon-button-script' === $handle ) {
+		// This script is an event listener and can be safely deferred.
+		return str_replace( '<script ', '<script defer ', $tag );
+	}
 
-    // 2.Async load FontAwesome
+	// 2.Async load FontAwesome
 	if ( 'fontawesome-frontend' === $handle ) {
-		return str_replace( 
-			"rel='stylesheet'", 
-			"rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", 
-			$tag 
+		return str_replace(
+			"rel='stylesheet'",
+			"rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"",
+			$tag
 		);
 	}
 
-    // 3. Asynchronously load the block CSS (style-index.css)
-    if ( 'dgdev-icon-button-style' === $handle ) {
-        // Use the classic async CSS pattern to load non-render-blocking.
-        return str_replace( 
-            "rel='stylesheet'", 
-            "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", 
-            $tag 
-        );
-    }
-    
-    return $tag;
+	// 3. Asynchronously load the block CSS (style-index.css)
+	if ( 'dgdev-icon-button-style' === $handle ) {
+		// Use the classic async CSS pattern to load non-render-blocking.
+		return str_replace(
+			"rel='stylesheet'",
+			"rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"",
+			$tag
+		);
+	}
+
+	return $tag;
 }
 
 // Apply the filter for both styles and scripts
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\iconic_button_optimize_assets', 10, 2 );
 add_filter( 'style_loader_tag', __NAMESPACE__ . '\iconic_button_optimize_assets', 10, 2 );
+
+/**
+ * Loads the textdomain for translations.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function iconic_button_load_textdomain() {
+	load_plugin_textdomain(
+		'iconic-button',
+		false,
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+	);
+}
+add_action( 'init', __NAMESPACE__ . '\iconic_button_load_textdomain' );

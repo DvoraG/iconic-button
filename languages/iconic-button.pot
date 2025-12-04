@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Iconic Button 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iconic-button\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iconic-button-free\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-14T18:35:59+00:00\n"
+"POT-Creation-Date: 2025-12-03T11:12:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: iconic-button\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #. Description of the plugin
 #: iconic-button.php
-msgid "A customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons."
+msgid "Free version of a customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons."
 msgstr ""
 
 #. Author of the plugin
@@ -35,384 +35,428 @@ msgid "https://www.dgdev-studio.com"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/link-control/legacy-link-control.js:30
-#: src/components/link-control/modern-link-control.js:52
+#: src/components/link-control/legacy-link-control.js:83
+#: src/components/link-control/modern-link-control.js:29
 msgid "Open in new tab"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/link-control/legacy-link-control.js:43
-#: src/components/link-control/modern-link-control.js:56
+#: src/components/link-control/legacy-link-control.js:96
+#: src/components/link-control/modern-link-control.js:33
 msgid "Mark as nofollow"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/link-control/legacy-link-control.js:24
-msgid "Enter URL"
+#: src/components/link-control/legacy-link-control.js:123
+#: src/components/link-control/modern-link-control.js:40
+msgid "Scroll to top"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/link-control/legacy-link-control.js:81
+#: src/components/link-control/legacy-link-control.js:66
+msgid "Enter URL, # for scroll to top, or leave empty for no link"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:127
+msgid "Button will scroll to top when clicked"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:131
+msgid "Button will have no link functionality"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/link-control/legacy-link-control.js:163
 msgid "Remove Link"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:52
-msgid "Save & Close"
+#: src/components/link-control/legacy-link-control.js:167
+msgid "Save"
 msgstr ""
 
 #: build/icon-button/index.js:1
 #: src/controls/toolbar.js:60
+msgid "Save & Close"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/toolbar.js:68
 msgid "Button"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:78
+#: src/controls/toolbar.js:86
 msgid "Tooltip Settings"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:87
+#: src/controls/toolbar.js:95
 msgid "Tooltip Text"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:95
+#: src/controls/toolbar.js:103
 msgid "Enter tooltip (defaults to icon label)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:99
+#: src/controls/toolbar.js:107
 msgid "Enter tooltip (e.g., Click me)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:106
+#: src/controls/toolbar.js:114
 msgid "Text to display on hover or focus (e.g., 'Click me')."
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:110
+#: src/controls/toolbar.js:118
 msgid "Tooltip is empty; will default to icon label."
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/toolbar.js:127
-#: src/utils/initial-icons.js:40
-msgid "Link"
+#: src/controls/toolbar.js:135
+msgid "Add or edit link"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:15
+#: future-release/utils/initial-icons.js:15
+#: src/utils/initial-icons.js:14
 msgid "Add"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:16
-msgid "Arrow Left"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:17
-msgid "Arrow Right"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:18
-msgid "Arrow Up"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:19
-msgid "Arrow Down"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:20
-msgid "Cart"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:21
+#: future-release/utils/initial-icons.js:21
+#: src/utils/initial-icons.js:15
 msgid "Check"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:23
+#: future-release/utils/initial-icons.js:23
+#: src/utils/initial-icons.js:17
 msgid "Chevron Left"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:27
-msgid "Chevron Right"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:30
-msgid "Circle"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:31
-msgid "Close"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:32
-msgid "Delete"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:33
-msgid "Download"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:34
+#: future-release/utils/initial-icons.js:34
+#: src/utils/initial-icons.js:20
 msgid "Edit"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:35
+#: future-release/utils/initial-icons.js:35
+#: src/utils/initial-icons.js:21
 msgid "Email"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:36
+#: future-release/utils/initial-icons.js:36
+#: src/utils/initial-icons.js:22
 msgid "Heart"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:37
-msgid "Help"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:38
+#: future-release/utils/initial-icons.js:38
+#: src/utils/initial-icons.js:23
 msgid "Home"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:39
-msgid "Information"
+#: future-release/utils/initial-icons.js:40
+#: src/utils/initial-icons.js:24
+msgid "Link"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:41
-msgid "Menu"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:42
+#: future-release/utils/initial-icons.js:42
+#: src/utils/initial-icons.js:25
 msgid "Notification"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:43
-msgid "Phone"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:44
-msgid "Remove"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:45
-msgid "Share"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:46
+#: future-release/utils/initial-icons.js:46
+#: src/utils/initial-icons.js:26
 msgid "Search"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:47
+#: future-release/utils/initial-icons.js:47
+#: src/utils/initial-icons.js:27
 msgid "Settings"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:48
-msgid "Star"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:49
-msgid "Upload"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:50
+#: future-release/utils/initial-icons.js:50
+#: src/utils/initial-icons.js:28
 msgid "User"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/utils/initial-icons.js:52
-msgid "Warning"
-msgstr ""
-
-#: build/icon-button/index.js:1
-#: src/components/icon-picker-control/icon-picker.js:45
+#: src/components/icon-picker-control/icon-picker.js:54
 msgid "Search Icons"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/icon-picker-control/icon-picker.js:48
+#: src/components/icon-picker-control/icon-picker.js:57
 msgid "Type to filter icons…"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/icon-picker-control/icon-picker.js:70
-#: src/controls/setting-controls.js:65
+#: src/components/icon-picker-control/icon-picker.js:79
+#: src/controls/setting-controls.js:95
 msgid "None"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/icon-picker-control/icon-picker.js:76
+#: src/components/icon-picker-control/icon-picker.js:85
 msgid "No icons found."
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:41
+#: src/controls/setting-controls.js:71
 msgid "Icon Button Settings"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:45
+#: src/controls/setting-controls.js:75
 msgid "Choose a Font Awesome Icon"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:61
+#: src/controls/setting-controls.js:91
 msgid "Icon Animation"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:69
+#: src/controls/setting-controls.js:99
 msgid "Spin"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:73
+#: src/controls/setting-controls.js:103
 msgid "Bounce"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:88
+#: src/controls/setting-controls.js:118
 msgid "Icon Size"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:92
+#: src/controls/setting-controls.js:122
 msgid "Small (16px)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:96
+#: src/controls/setting-controls.js:126
 msgid "Medium (20px)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:100
+#: src/controls/setting-controls.js:130
 msgid "Large (24px)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:104
+#: src/controls/setting-controls.js:134
 msgid "X-Large (28px)"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:113
+#: src/controls/setting-controls.js:143
 msgid "Button Text Settings"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:116
+#: src/controls/setting-controls.js:146
 msgid "Show Button Text"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:125
+#: src/controls/setting-controls.js:155
 msgid "Icon Position"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:129
+#: src/controls/setting-controls.js:159
 msgid "Before Text"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:133
+#: src/controls/setting-controls.js:163
 msgid "After Text"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/setting-controls.js:144
+#: src/controls/setting-controls.js:174
 msgid "Button Text"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/styling-controls.js:16
-msgid "Border Settings"
+#: src/controls/setting-controls.js:193
+msgid "Long text may wrap on mobile devices"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/controls/styling-controls.js:20
-msgid "Border Radius (px)"
+#: src/controls/setting-controls.js:200
+msgid "Brief text works best for buttons"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:76
+#: src/controls/setting-controls.js:211
+msgid "Button State"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/setting-controls.js:214
+msgid "Show pressed state in editor"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/components/color-control/color-control.js:60
 msgid "Background"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:78
+#: src/components/color-control/color-control.js:62
 msgid "Gradient"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:82
+#: src/components/color-control/color-control.js:66
 msgid "Color Settings"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:110
-#: src/components/color-control/color-control.js:203
+#: src/components/color-control/color-control.js:94
+#: src/components/color-control/color-control.js:193
 msgid "Text Color"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:147
+#: src/components/color-control/color-control.js:134
 msgid "Gradients are not supported by automatic contrast checking. Please verify that the text color contrasts with the lightest and darkest parts of the gradient using an external tool like"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:156
+#: src/components/color-control/color-control.js:143
 msgid "WebAIM Contrast Checker"
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:161
+#: src/components/color-control/color-control.js:151
 msgid "for accessibility (WCAG ≥ 4.5:1)."
 msgstr ""
 
 #: build/icon-button/index.js:1
-#: src/components/color-control/color-control.js:191
+#: src/components/color-control/color-control.js:181
 msgid "Clear"
 msgstr ""
 
-#: src/components/svg-preview/svg-preview.js:7
+#: build/icon-button/index.js:1
+#: src/controls/styling-controls.js:33
+msgid "Border Settings"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/controls/styling-controls.js:37
+msgid "Border Radius (px)"
+msgstr ""
+
+#: build/icon-button/index.js:1
+#: src/icon-button/edit.js:171
+#: src/icon-button/edit.js:177
+msgid "Button was clicked"
+msgstr ""
+
+#: future-release/svg-preview/svg-preview.js:7
 msgid "No valid SVG code provided."
 msgstr ""
 
-#: src/components/svg-preview/svg-preview.js:14
+#: future-release/svg-preview/svg-preview.js:14
 msgid "Invalid SVG code."
 msgstr ""
 
-#: src/utils/parseSvgToReact.js:201
+#: future-release/utils/initial-icons.js:16
+msgid "Arrow Left"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:17
+msgid "Arrow Right"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:18
+msgid "Arrow Up"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:19
+msgid "Arrow Down"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:20
+msgid "Cart"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:27
+msgid "Chevron Right"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:30
+msgid "Circle"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:31
+msgid "Close"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:32
+msgid "Delete"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:33
+msgid "Download"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:37
+msgid "Help"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:39
+msgid "Information"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:41
+msgid "Menu"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:43
+msgid "Phone"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:44
+msgid "Remove"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:45
+msgid "Share"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:48
+msgid "Star"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:49
+msgid "Upload"
+msgstr ""
+
+#: future-release/utils/initial-icons.js:52
+msgid "Warning"
+msgstr ""
+
+#: src/utils/parseSvgToReact.js:214
 msgid "Icon unavailable"
 msgstr ""
 

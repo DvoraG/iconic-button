@@ -47,6 +47,7 @@ Thumbs.db
 changed/
 docs/
 tmp*
+temp*
 *.txt
 !readme.txt
 !LICENSE.txt
