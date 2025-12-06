@@ -1,6 +1,6 @@
 === Iconic Button ===
 Contributors: Dvora Gvili
-Tags: button, icon-button, gutenberg, accessible, wcag, block, font-awesome, responsive, keyboard-navigation, semantic-html
+Tags: button, icon-button, gutenberg, accessible, responsive
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 7.4
