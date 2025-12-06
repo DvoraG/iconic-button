@@ -74,15 +74,12 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 
 == Screenshots ==
 
-1. Iconic Button block in the editor
-2. Fill and Outline style variants
-3. 12 included icons in the picker
-4. Frontend with hover/focus states
-5. External link indicator
-6. Automatic tooltip on icon-only button
-7. Dark mode detection
-8. RTL language support
-9. Lighthouse performance scores (100/100)
+1. Iconic Button block in the Gutenberg editor – clean controls and live preview
+2. Choose from 12 essential Font Awesome icons + Fill/Outline styles and theme colors
+3. External link with green indicator, tooltip settings, and link options
+4. Automatic dark mode detection – buttons adapt perfectly to light & dark themes
+5. Various icon sizes, border radius, and icon-only button examples
+6. Full RTL support and perfect touch targets on mobile
 
 == Changelog ==
 

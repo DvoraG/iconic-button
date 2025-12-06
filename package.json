@@ -28,8 +28,6 @@
 		"build",
 		"assets",
 		"languages",
-		"readme.txt",
-		"README.md",
 		"iconic-button.php"
 	],
 	"prettier": "@wordpress/prettier-config",

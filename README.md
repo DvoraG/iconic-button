@@ -31,7 +31,7 @@ Create stunning icon buttons with Font Awesome integration. Free version with 32
 
 Clone repo, `npm install`, `npm run build`.
 
-## Upgrade to Pro
+## Upgrade to Pro - Coming soon!
 
 Unlimited choice from the 2000+ Font Awesome free icons , drag-drop manager, premium support: [dg-devstudio.com](https://dg-devstudio.com)
 
