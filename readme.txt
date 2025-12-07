@@ -83,7 +83,10 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 
 == Changelog ==
 
-= 1.0.0 - January 2025 =
+= 1.0.1 - 2025-12-07
+* Removed manual textdomain loading (now auto-loaded by WordPress) 
+
+= 1.0.0 - 2025-12-06 =
 * Initial release - 
 * 12 Font Awesome icons
 * Fill & Outline styles

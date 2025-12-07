@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Iconic Button
  * Description:       Free version of a customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.6
  * Tested up tp:      6.9
  * Requires PHP:      7.4
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ICONIC_BUTTON_VERSION', '1.0.0' );
+define( 'ICONIC_BUTTON_VERSION', '1.0.1' );
 define( 'ICONIC_BUTTON_FA_VERSION', '7.0.1' );
 
 if ( defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -206,18 +206,3 @@ function iconic_button_optimize_assets( $tag, $handle ) {
 // Apply the filter for both styles and scripts
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\iconic_button_optimize_assets', 10, 2 );
 add_filter( 'style_loader_tag', __NAMESPACE__ . '\iconic_button_optimize_assets', 10, 2 );
-
-/**
- * Loads the textdomain for translations.
- *
- * @since 1.0.0
- * @return void
- */
-function iconic_button_load_textdomain() {
-	load_plugin_textdomain(
-		'iconic-button',
-		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
-	);
-}
-add_action( 'init', __NAMESPACE__ . '\iconic_button_load_textdomain' );
