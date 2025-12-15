@@ -35,7 +35,7 @@ The **free version** includes **12 essential Font Awesome icons**. Upgrade to Pr
 * Zero database tables – ultra lightweight
 * Translation-ready (.pot included)
 
-= Perfect For =
+== Perfect For ==
 
 * Call-to-action buttons
 * Download buttons
@@ -103,13 +103,15 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 
 == Credits ==
 
-**Author:** Dvora Gvili  
+**Author:** Dvora Gvili, dvorag
 **Company:** Dvora Gvili DevStudio  
 **Website:** https://dg-devstudio.com
 
 **Third-Party Resources:**
-- Font Awesome 7.1.0 Free – https://fontawesome.com  
+- Font Awesome 7.1.0 Free  
   License: Icons CC BY 4.0 | Fonts SIL OFL 1.1 | Code MIT
+  License URL: https://fontawesome.com/license/free
+- Source: https://fontawesome.com
 
 == Support ==
 
