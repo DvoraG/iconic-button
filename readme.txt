@@ -1,10 +1,10 @@
 === Iconic Button ===
-Contributors: Dvora Gvili
+Contributors: Dvora Gvili, dvorag
 Tags: button, icon-button, gutenberg, accessible, responsive
 Requires at least: 6.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,11 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 6. Full RTL support and perfect touch targets on mobile
 
 == Changelog ==
+
+= 1.0.2 - 2025-12-15
+* Fix: Corrected Author URI and Plugin URI domain spelling.
+* Prep: Removed unnecessary screenshot files from plugin package (to be added via SVN assets after approval).
+* Tweak: Minor ownership verification updates for WordPress.org submission.
 
 = 1.0.1 - 2025-12-07
 * Removed manual textdomain loading (now auto-loaded by WordPress) 

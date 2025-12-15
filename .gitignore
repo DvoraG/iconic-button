@@ -46,6 +46,7 @@ Thumbs.db
 # other files to ignore
 changed/
 docs/
+images/
 tmp*
 temp*
 *.txt
