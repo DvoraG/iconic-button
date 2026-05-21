@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       Iconic Button
  * Description:       Free version of a customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.6
- * Tested up tp:      6.9
+ * Tested up tp:      7.0
  * Requires PHP:      7.4
  * Author:            Dvora Gvili, dvorag
  * Author URI:        https://www.dg-devstudio.com

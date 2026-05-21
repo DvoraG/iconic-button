@@ -75,7 +75,8 @@
 }
 
 @mixin maintain-style-colors($dark: false) {
-	$contrast: if($dark, #1a8ccc, #0073aa);
+	// $contrast: if($dark, #1a8ccc, #0073aa);
+	$contrast: if(sass($dark): #1a8ccc; else: #0073aa);
 	$base: #e2e2e2;
 
 	&.is-style-fill {
