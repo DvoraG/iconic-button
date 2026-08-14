@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       Iconic Button
  * Description:       Free version of a customizable button block with icons and text for WordPress, enhancing your site with styled call-to-action buttons.
- * Version:           1.0.3
+ * Version:           1.0.5
  * Requires at least: 6.6
- * Tested up tp:      7.0
+ * Tested up tp:      7.1
  * Requires PHP:      7.4
  * Author:            Dvora Gvili, dvorag
  * Author URI:        https://www.dg-devstudio.com
@@ -22,8 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ICONIC_BUTTON_VERSION', '1.0.1' );
-define( 'ICONIC_BUTTON_FA_VERSION', '7.0.1' );
+define( 'ICONIC_BUTTON_VERSION', '1.0.5' );
+define( 'ICONIC_BUTTON_FA_VERSION', '7.1' );
 
 if ( defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	delete_option( 'iconic_button_settings' );
@@ -76,7 +76,7 @@ function iconic_button_block_init() {
 	}
 	$registered = true;
 
-	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) && version_compare( get_bloginfo( 'version' ), '6.7', '>=' ) ) {
+	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) && version_compare( get_bloginfo( 'version' ), '6.8', '>=' ) ) {
 		wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 	} else {
 		register_block_type( __DIR__ . '/build/icon-buttons' );
