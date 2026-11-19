@@ -1,6 +1,6 @@
 {
 	"name": "iconic-button",
-	"version": "1.0.6",
+	"version": "1.1.0",
 	"description": "Button that can receive an icon as label with or without text.",
 	"author": "Dvora Gvili",
 	"license": "",

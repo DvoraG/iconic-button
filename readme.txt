@@ -2,9 +2,9 @@
 Contributors: Dvora Gvili, dvorag
 Tags: button, icon-button, gutenberg, accessible, responsive
 Requires at least: 6.6
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,14 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 
 == Changelog ==
 
+= 1.1.1 - 2026-11-19
+* Tested with WordPress 7.2
+* Updated fontawesome free to version 7.3.1 
+
+= 1.1.0 - 2026-11-19
+* Tested with WordPress 7.2
+* Updated fontawesome free to version 7.3.1 
+
 = 1.0.6 - 2026-08-14
 * Tested with WordPress 7.1
 
@@ -121,7 +129,7 @@ You can add **all 2,000+ free Font Awesome icons** (and we’ll add SVG upload s
 **Website:** https://dg-devstudio.com
 
 **Third-Party Resources:**
-- Font Awesome 7.1.0 Free  
+- Font Awesome 7.3.1 Free  
   License: Icons CC BY 4.0 | Fonts SIL OFL 1.1 | Code MIT
   License URL: https://fontawesome.com/license/free
 - Source: https://fontawesome.com
